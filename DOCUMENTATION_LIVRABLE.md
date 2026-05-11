@@ -126,6 +126,19 @@ classDiagram
         -String email
         -String password
         -Role role
+        +User()
+        +getId() Long
+        +setId(Long) void
+        +getFirstName() String
+        +setFirstName(String) void
+        +getLastName() String
+        +setLastName(String) void
+        +getEmail() String
+        +setEmail(String) void
+        +getPassword() String
+        +setPassword(String) void
+        +getRole() Role
+        +setRole(Role) void
     }
 
     class Role {
@@ -149,18 +162,55 @@ classDiagram
         -Publisher publisher
         -Set~Author~ authors
         -Inventory inventory
+        +Game()
+        +getId() Long
+        +setId(Long) void
+        +getName() String
+        +setName(String) void
+        +getDescription() String
+        +setDescription(String) void
+        +getGenre() String
+        +setGenre(String) void
+        +getMinPlayers() Integer
+        +setMinPlayers(Integer) void
+        +getMaxPlayers() Integer
+        +setMaxPlayers(Integer) void
+        +getDurationMinutes() Integer
+        +setDurationMinutes(Integer) void
+        +getEditionNumber() Integer
+        +setEditionNumber(Integer) void
+        +getPrice() BigDecimal
+        +setPrice(BigDecimal) void
+        +getCategory() Category
+        +setCategory(Category) void
+        +getPublisher() Publisher
+        +setPublisher(Publisher) void
+        +getAuthors() Set~Author~
+        +setAuthors(Set~Author~) void
+        +getInventory() Inventory
+        +setInventory(Inventory) void
     }
 
     class Category {
         <<Entity>>
         -Long id
         -String name
+        +Category()
+        +getId() Long
+        +setId(Long) void
+        +getName() String
+        +setName(String) void
     }
 
     class Publisher {
         <<Entity>>
         -Long id
         -String name
+        +Publisher()
+        +getId() Long
+        +setId(Long) void
+        +getName() String
+        +setName(String) void
     }
 
     class Author {
@@ -168,6 +218,13 @@ classDiagram
         -Long id
         -String name
         -Set~Game~ games
+        +Author()
+        +getId() Long
+        +setId(Long) void
+        +getName() String
+        +setName(String) void
+        +getGames() Set~Game~
+        +setGames(Set~Game~) void
     }
 
     class Inventory {
@@ -175,6 +232,13 @@ classDiagram
         -Long id
         -Game game
         -int quantity
+        +Inventory()
+        +getId() Long
+        +setId(Long) void
+        +getGame() Game
+        +setGame(Game) void
+        +getQuantity() int
+        +setQuantity(int) void
     }
 
     class Purchase {
@@ -186,6 +250,21 @@ classDiagram
         -boolean paid
         -boolean delivered
         -boolean archived
+        +Purchase()
+        +getId() Long
+        +setId(Long) void
+        +getUser() User
+        +setUser(User) void
+        +getLines() List~PurchaseLine~
+        +setLines(List~PurchaseLine~) void
+        +getDate() LocalDateTime
+        +setDate(LocalDateTime) void
+        +isPaid() boolean
+        +setPaid(boolean) void
+        +isDelivered() boolean
+        +setDelivered(boolean) void
+        +isArchived() boolean
+        +setArchived(boolean) void
     }
 
     class PurchaseLine {
@@ -195,6 +274,17 @@ classDiagram
         -Game game
         -int quantity
         -BigDecimal unitPrice
+        +PurchaseLine()
+        +getId() Long
+        +setId(Long) void
+        +getPurchase() Purchase
+        +setPurchase(Purchase) void
+        +getGame() Game
+        +setGame(Game) void
+        +getQuantity() int
+        +setQuantity(int) void
+        +getUnitPrice() BigDecimal
+        +setUnitPrice(BigDecimal) void
     }
 
     class Avis {
@@ -204,6 +294,17 @@ classDiagram
         -int rating
         -User user
         -Game game
+        +Avis()
+        +getId() Long
+        +setId(Long) void
+        +getComment() String
+        +setComment(String) void
+        +getRating() int
+        +setRating(int) void
+        +getUser() User
+        +setUser(User) void
+        +getGame() Game
+        +setGame(Game) void
     }
 
     class Wishlist {
@@ -211,6 +312,13 @@ classDiagram
         -Long id
         -User user
         -Set~Game~ games
+        +Wishlist()
+        +getId() Long
+        +setId(Long) void
+        +getUser() User
+        +setUser(User) void
+        +getGames() Set~Game~
+        +setGames(Set~Game~) void
     }
 
     User --> Role
@@ -227,8 +335,6 @@ classDiagram
     PurchaseLine "0..*" --> "1" Game : concerne
     Wishlist "0..*" --> "0..*" Game : contient
 ```
-
-Ce diagramme se concentre volontairement sur les classes métier persistées et leurs relations JPA. Il montre les entités `User`, `Role`, `Game`, `Category`, `Publisher`, `Author`, `Purchase`, `PurchaseLine`, `Wishlist`, `Avis` et `Inventory`, ainsi que les cardinalités Hibernate principales : utilisateur-commandes, utilisateur-avis, utilisateur-wishlist, jeu-catégorie, jeu-éditeur, jeu-auteurs, jeu-stock, commande-lignes, avis utilisateur/jeu et wishlist-jeux.
 
 ## Diagramme de composants
 
@@ -366,10 +472,10 @@ cd gamesUP
 Résultat :
 
 - Build Spring : succès.
-- Tests Spring : 19 tests, 0 échec.
-- Couverture JaCoCo instructions : 99 pourcent.
-- Couverture JaCoCo branches : 89 pourcent.
-- Couverture JaCoCo classes : 100 pourcent.
+- Tests Spring : 15 tests, 0 échec.
+- Couverture JaCoCo instructions : 75 pourcent.
+- Couverture JaCoCo branches : 57 pourcent.
+- Couverture JaCoCo classes : 98 pourcent.
 
 Rapports :
 
@@ -380,24 +486,23 @@ Rapports :
 
 | Métrique JaCoCo | Couverture | Détail |
 | --- | ---: | --- |
-| Instructions | 99 % | 8 instructions non couvertes sur 3 132 |
-| Branches | 89 % | 6 branches non couvertes sur 56 |
-| Complexité | 97 % | 7 points de complexité non couverts sur 342 |
-| Lignes | 99 % | 2 lignes non couvertes sur 708 |
-| Méthodes | 99 % | 1 méthode non couverte sur 314 |
-| Classes | 100 % | 56 classes couvertes sur 56 |
+| Instructions | 75 % | 754 instructions non couvertes sur 3 132 |
+| Branches | 57 % | 24 branches non couvertes sur 56 |
+| Complexité | 71 % | 99 points de complexité non couverts sur 342 |
+| Lignes | 81 % | 131 lignes non couvertes sur 708 |
+| Méthodes | 74 % | 79 méthodes non couvertes sur 314 |
+| Classes | 98 % | 1 classe non couverte sur 56 |
 
 ```mermaid
 xychart-beta
     title "Couverture JaCoCo"
     x-axis ["Instructions", "Branches", "Complexité", "Lignes", "Méthodes", "Classes"]
     y-axis "Pourcentage" 0 --> 100
-    bar [99, 89, 97, 99, 99, 100]
+    bar [75, 57, 71, 81, 74, 98]
 ```
 
 Lecture du rapport :
 
-- les couches `controller`, `dto`, `mapper`, `model` et `exception` sont couvertes à 100 % ;
-- la couche `service` est couverte à 99 % ;
-- la couverture restante non atteinte correspond principalement à des chemins techniques ou branches de configuration ;
-- le seuil demandé de 70 % est largement dépassé.
+- les tests ont été découpés par domaine pour améliorer la lisibilité : santé/sécurité, catalogue, commerce, recommandations et erreurs ;
+- les tests de branches très secondaires ont été retirés pour conserver une suite plus utile fonctionnellement ;
+- la couverture d’instructions reste supérieure au seuil demandé de 70 %.

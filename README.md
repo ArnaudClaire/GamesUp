@@ -49,6 +49,33 @@ Arrêt des API en conservant MySQL :
 .\stop-all.ps1 -KeepMySql
 ```
 
+## Variables d’environnement
+
+L’API Spring lit les variables suivantes, avec des valeurs par défaut définies dans `gamesUP/src/main/resources/application.properties`.
+
+| Variable | Valeur par défaut | Description |
+| --- | --- | --- |
+| `SERVER_PORT` | `8080` | Port HTTP de l’API Spring. Le script `start-all.ps1` utilise `8081` par défaut. |
+| `SPRING_DATASOURCE_URL` | `jdbc:mysql://localhost:3306/GamesUP` | URL JDBC de la base MySQL. |
+| `SPRING_DATASOURCE_USERNAME` | `root` | Utilisateur MySQL. |
+| `SPRING_DATASOURCE_PASSWORD` | vide | Mot de passe MySQL. Le script utilise la valeur du paramètre `-MySqlRootPassword`. |
+| `SPRING_DATASOURCE_DRIVER` | `com.mysql.cj.jdbc.Driver` | Driver JDBC utilisé par Spring. |
+| `MYSQL_HOST` | `localhost` | Hôte MySQL utilisé pour construire l’URL par défaut si `SPRING_DATASOURCE_URL` n’est pas défini. |
+| `JPA_DDL_AUTO` | `update` | Stratégie Hibernate de génération du schéma. |
+| `RECOMMENDATION_API_URL` | `http://localhost:8000` | URL de l’API Python appelée par Spring. |
+| `SEED_DATA_ENABLED` | `true` | Active ou désactive la création des données de démonstration au démarrage. |
+
+Le script `start-all.ps1` accepte aussi ces paramètres :
+
+| Paramètre | Valeur par défaut | Description |
+| --- | --- | --- |
+| `-SpringPort` | `8081` | Port exposé pour l’API Spring. |
+| `-PythonPort` | `8000` | Port exposé pour l’API Python FastAPI. |
+| `-MySqlPort` | `3306` | Port local du conteneur MySQL. |
+| `-MySqlContainer` | `gamesup-mysql` | Nom du conteneur Docker MySQL. |
+| `-MySqlRootPassword` | `root` | Mot de passe root MySQL injecté dans Docker et Spring. |
+| `-DatabaseName` | `GamesUP` | Nom de la base créée dans MySQL. |
+
 ## Tests
 
 ### API Spring
