@@ -1,0 +1,20 @@
+# Runtime logs
+*.log
+logs/
+
+# Java / Maven
+gamesUP/target/
+*.class
+
+# Python
+CodeApiPython/__pycache__/
+CodeApiPython/.venv/
+*.py[cod]
+
+# IDE / local workspace
+.metals/
+.vscode/
+
+# OS files
+Thumbs.db
+.DS_Store

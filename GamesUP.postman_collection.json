@@ -1,0 +1,343 @@
+{
+  "info": {
+    "name": "GamesUP API",
+    "description": "Collection de test pour l'API Spring GamesUP et l'API Python de recommandations.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "springBaseUrl",
+      "value": "http://localhost:8081"
+    },
+    {
+      "key": "pythonBaseUrl",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "adminEmail",
+      "value": "admin@gamesup.local"
+    },
+    {
+      "key": "adminPassword",
+      "value": "admin123"
+    },
+    {
+      "key": "clientEmail",
+      "value": "client@gamesup.local"
+    },
+    {
+      "key": "clientPassword",
+      "value": "client123"
+    }
+  ],
+  "item": [
+    {
+      "name": "Spring - Health",
+      "request": {
+        "method": "GET",
+        "url": "{{springBaseUrl}}/api/health"
+      }
+    },
+    {
+      "name": "Spring - List games",
+      "request": {
+        "method": "GET",
+        "url": "{{springBaseUrl}}/api/games"
+      }
+    },
+    {
+      "name": "Spring - Search games",
+      "request": {
+        "method": "GET",
+        "url": "{{springBaseUrl}}/api/games?search=catan"
+      }
+    },
+    {
+      "name": "Spring - Create client account",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Postman\",\n  \"lastName\": \"Client\",\n  \"email\": \"postman.client@gamesup.local\",\n  \"password\": \"client123\"\n}"
+        },
+        "url": "{{springBaseUrl}}/api/users"
+      }
+    },
+    {
+      "name": "Spring - Me as client",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{clientEmail}}",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "{{clientPassword}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "url": "{{springBaseUrl}}/api/users/me"
+      }
+    },
+    {
+      "name": "Spring - Create category as admin",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{adminEmail}}",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "{{adminPassword}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Ambiance\"\n}"
+        },
+        "url": "{{springBaseUrl}}/api/categories"
+      }
+    },
+    {
+      "name": "Spring - Create publisher as admin",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{adminEmail}}",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "{{adminPassword}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Postman Editions\"\n}"
+        },
+        "url": "{{springBaseUrl}}/api/publishers"
+      }
+    },
+    {
+      "name": "Spring - Create author as admin",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{adminEmail}}",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "{{adminPassword}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Postman Author\"\n}"
+        },
+        "url": "{{springBaseUrl}}/api/authors"
+      }
+    },
+    {
+      "name": "Spring - Create game as admin",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{adminEmail}}",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "{{adminPassword}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Postman Game\",\n  \"description\": \"Jeu cree depuis Postman.\",\n  \"genre\": \"Ambiance\",\n  \"minPlayers\": 2,\n  \"maxPlayers\": 6,\n  \"durationMinutes\": 30,\n  \"editionNumber\": 1,\n  \"price\": 24.99,\n  \"categoryId\": 1,\n  \"publisherId\": 1,\n  \"authorIds\": [1]\n}"
+        },
+        "url": "{{springBaseUrl}}/api/games"
+      }
+    },
+    {
+      "name": "Spring - Update inventory as admin",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{adminEmail}}",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "{{adminPassword}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"gameId\": 1,\n  \"quantity\": 10\n}"
+        },
+        "url": "{{springBaseUrl}}/api/inventory"
+      }
+    },
+    {
+      "name": "Spring - Create purchase as admin",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{adminEmail}}",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "{{adminPassword}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": 2,\n  \"lines\": [\n    {\n      \"gameId\": 1,\n      \"quantity\": 1\n    }\n  ]\n}"
+        },
+        "url": "{{springBaseUrl}}/api/purchases"
+      }
+    },
+    {
+      "name": "Spring - Recommendations through Python",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{clientEmail}}",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "{{clientPassword}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": 1,\n  \"purchases\": [\n    {\n      \"gameId\": 102,\n      \"rating\": 4.5\n    }\n  ]\n}"
+        },
+        "url": "{{springBaseUrl}}/api/recommendations"
+      }
+    },
+    {
+      "name": "Python - Health",
+      "request": {
+        "method": "GET",
+        "url": "{{pythonBaseUrl}}/health"
+      }
+    },
+    {
+      "name": "Python - Direct recommendations",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": 1,\n  \"purchases\": [\n    {\n      \"gameId\": 102,\n      \"rating\": 4.5\n    }\n  ]\n}"
+        },
+        "url": "{{pythonBaseUrl}}/recommendations"
+      }
+    }
+  ]
+}
