@@ -12,7 +12,6 @@ import com.gamesUP.gamesUP.repository.PurchaseRepository;
 import com.gamesUP.gamesUP.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -22,8 +21,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-@RequiredArgsConstructor
 @Transactional(readOnly = true)
+/**
+ * Builds recommendation requests and delegates scoring to the Python API.
+ */
 public class RecommendationService {
 
     private final RestTemplate restTemplate;
@@ -34,6 +35,32 @@ public class RecommendationService {
     @Value("${gamesup.recommendation-api.url}")
     private String recommendationApiUrl;
 
+    /**
+     * Creates the service with HTTP and persistence dependencies.
+     *
+     * @param restTemplate HTTP client used to call the Python API
+     * @param userRepository repository for users
+     * @param purchaseRepository repository for purchases
+     * @param avisRepository repository for reviews
+     */
+    public RecommendationService(
+            RestTemplate restTemplate,
+            UserRepository userRepository,
+            PurchaseRepository purchaseRepository,
+            AvisRepository avisRepository
+    ) {
+        this.restTemplate = restTemplate;
+        this.userRepository = userRepository;
+        this.purchaseRepository = purchaseRepository;
+        this.avisRepository = avisRepository;
+    }
+
+    /**
+     * Builds signals from a stored user and requests recommendations.
+     *
+     * @param userId user identifier
+     * @return recommendations returned by the Python API
+     */
     public List<RecommendationResponse> recommendForUser(Long userId) {
         if (!userRepository.existsById(userId)) {
             throw new ResourceNotFoundException("User not found with id " + userId);
@@ -43,6 +70,12 @@ public class RecommendationService {
         return recommend(request);
     }
 
+    /**
+     * Sends an explicit recommendation request to the Python API.
+     *
+     * @param request recommendation payload
+     * @return recommendations returned by the Python API
+     */
     public List<RecommendationResponse> recommend(RecommendationRequest request) {
         return restTemplate.exchange(
                 recommendationApiUrl + "/recommendations",

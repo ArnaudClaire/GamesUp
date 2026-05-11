@@ -15,31 +15,72 @@ import com.gamesUP.gamesUP.repository.PurchaseRepository;
 import com.gamesUP.gamesUP.repository.UserRepository;
 import java.time.LocalDateTime;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@RequiredArgsConstructor
 @Transactional(readOnly = true)
+/**
+ * Provides business operations for purchases and purchase status changes.
+ */
 public class PurchaseService {
 
     private final PurchaseRepository purchaseRepository;
     private final UserRepository userRepository;
     private final GameRepository gameRepository;
 
+    /**
+     * Creates the service with its repository dependencies.
+     *
+     * @param purchaseRepository repository for purchases
+     * @param userRepository repository for users
+     * @param gameRepository repository for games
+     */
+    public PurchaseService(
+            PurchaseRepository purchaseRepository,
+            UserRepository userRepository,
+            GameRepository gameRepository
+    ) {
+        this.purchaseRepository = purchaseRepository;
+        this.userRepository = userRepository;
+        this.gameRepository = gameRepository;
+    }
+
+    /**
+     * Lists every purchase.
+     *
+     * @return purchases
+     */
     public List<PurchaseResponse> findAll() {
         return purchaseRepository.findAll().stream().map(this::toResponse).toList();
     }
 
+    /**
+     * Lists purchases attached to one user.
+     *
+     * @param userId user identifier
+     * @return matching purchases
+     */
     public List<PurchaseResponse> findByUser(Long userId) {
         return purchaseRepository.findByUserId(userId).stream().map(this::toResponse).toList();
     }
 
+    /**
+     * Finds one purchase by identifier.
+     *
+     * @param id purchase identifier
+     * @return requested purchase
+     */
     public PurchaseResponse findById(Long id) {
         return toResponse(findPurchase(id));
     }
 
+    /**
+     * Creates a purchase and its purchase lines.
+     *
+     * @param request purchase payload
+     * @return created purchase
+     */
     @Transactional
     public PurchaseResponse create(PurchaseRequest request) {
         User user = userRepository.findById(request.userId())
@@ -66,6 +107,12 @@ public class PurchaseService {
         return toResponse(purchaseRepository.save(purchase));
     }
 
+    /**
+     * Marks a purchase as paid.
+     *
+     * @param id purchase identifier
+     * @return updated purchase
+     */
     @Transactional
     public PurchaseResponse markPaid(Long id) {
         Purchase purchase = findPurchase(id);
@@ -73,6 +120,12 @@ public class PurchaseService {
         return toResponse(purchase);
     }
 
+    /**
+     * Marks a purchase as delivered.
+     *
+     * @param id purchase identifier
+     * @return updated purchase
+     */
     @Transactional
     public PurchaseResponse markDelivered(Long id) {
         Purchase purchase = findPurchase(id);
@@ -80,6 +133,12 @@ public class PurchaseService {
         return toResponse(purchase);
     }
 
+    /**
+     * Archives a purchase.
+     *
+     * @param id purchase identifier
+     * @return updated purchase
+     */
     @Transactional
     public PurchaseResponse archive(Long id) {
         Purchase purchase = findPurchase(id);

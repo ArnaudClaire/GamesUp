@@ -10,15 +10,12 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+/**
+ * JPA entity representing a user wishlist.
+ */
 @Entity
 @Table(name = "wishlists")
-@Getter
-@Setter
-@NoArgsConstructor
 public class Wishlist {
 
     @Id
@@ -30,4 +27,34 @@ public class Wishlist {
 
     @ManyToMany
     private Set<Game> games = new HashSet<>();
+
+    /**
+     * Creates an empty wishlist for JPA.
+     */
+    public Wishlist() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Set<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(Set<Game> games) {
+        this.games = games;
+    }
 }

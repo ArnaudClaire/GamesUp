@@ -5,15 +5,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+/**
+ * JPA entity representing a game publisher.
+ */
 @Entity
 @Table(name = "publishers")
-@Getter
-@Setter
-@NoArgsConstructor
 public class Publisher {
 
     @Id
@@ -21,4 +18,26 @@ public class Publisher {
     private Long id;
 
     private String name;
+
+    /**
+     * Creates an empty publisher for JPA.
+     */
+    public Publisher() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

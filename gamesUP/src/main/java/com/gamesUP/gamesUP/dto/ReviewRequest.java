@@ -4,6 +4,9 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
+/**
+ * Request DTO used to create a review.
+ */
 public record ReviewRequest(
         @NotNull
         Long userId,

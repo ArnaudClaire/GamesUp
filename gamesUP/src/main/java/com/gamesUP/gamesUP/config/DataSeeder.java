@@ -15,14 +15,15 @@ import com.gamesUP.gamesUP.repository.PublisherRepository;
 import com.gamesUP.gamesUP.repository.UserRepository;
 import java.math.BigDecimal;
 import java.util.Set;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
+/**
+ * Inserts a small demonstration dataset when seed data is enabled.
+ */
 public class DataSeeder implements CommandLineRunner {
 
     private final UserRepository userRepository;
@@ -36,6 +37,40 @@ public class DataSeeder implements CommandLineRunner {
     @Value("${gamesup.seed-data.enabled:true}")
     private boolean enabled;
 
+    /**
+     * Creates the seeder with all repositories needed by the demo dataset.
+     *
+     * @param userRepository repository for users
+     * @param categoryRepository repository for categories
+     * @param authorRepository repository for authors
+     * @param publisherRepository repository for publishers
+     * @param gameRepository repository for games
+     * @param inventoryRepository repository for inventory entries
+     * @param passwordEncoder password encoder for demo accounts
+     */
+    public DataSeeder(
+            UserRepository userRepository,
+            CategoryRepository categoryRepository,
+            AuthorRepository authorRepository,
+            PublisherRepository publisherRepository,
+            GameRepository gameRepository,
+            InventoryRepository inventoryRepository,
+            PasswordEncoder passwordEncoder
+    ) {
+        this.userRepository = userRepository;
+        this.categoryRepository = categoryRepository;
+        this.authorRepository = authorRepository;
+        this.publisherRepository = publisherRepository;
+        this.gameRepository = gameRepository;
+        this.inventoryRepository = inventoryRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    /**
+     * Seeds the database if it is empty and seed data is enabled.
+     *
+     * @param args command-line arguments
+     */
     @Override
     public void run(String... args) {
         if (!enabled || userRepository.count() > 0 || gameRepository.count() > 0) {

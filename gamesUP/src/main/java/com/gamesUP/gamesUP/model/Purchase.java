@@ -12,15 +12,12 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+/**
+ * JPA entity representing a customer purchase.
+ */
 @Entity
 @Table(name = "purchases")
-@Getter
-@Setter
-@NoArgsConstructor
 public class Purchase {
 
     @Id
@@ -40,4 +37,66 @@ public class Purchase {
     private boolean delivered;
 
     private boolean archived;
+
+    /**
+     * Creates an empty purchase for JPA.
+     */
+    public Purchase() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<PurchaseLine> getLines() {
+        return lines;
+    }
+
+    public void setLines(List<PurchaseLine> lines) {
+        this.lines = lines;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public boolean isPaid() {
+        return paid;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
+    }
+
+    public boolean isDelivered() {
+        return delivered;
+    }
+
+    public void setDelivered(boolean delivered) {
+        this.delivered = delivered;
+    }
+
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
+    }
 }

@@ -6,6 +6,9 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
+/**
+ * Request DTO used to create or update a game.
+ */
 public record GameRequest(
         @NotBlank
         String name,

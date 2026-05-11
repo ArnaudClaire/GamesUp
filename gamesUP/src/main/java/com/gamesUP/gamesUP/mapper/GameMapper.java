@@ -14,8 +14,17 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 @Component
+/**
+ * Maps game entities to API responses and applies request data to entities.
+ */
 public class GameMapper {
 
+    /**
+     * Converts a game entity to its public response DTO.
+     *
+     * @param game game entity
+     * @return public game response
+     */
     public GameResponse toResponse(Game game) {
         return new GameResponse(
                 game.getId(),
@@ -34,6 +43,12 @@ public class GameMapper {
         );
     }
 
+    /**
+     * Copies writable request fields to a game entity.
+     *
+     * @param game target game entity
+     * @param request source request DTO
+     */
     public void updateEntity(Game game, GameRequest request) {
         game.setName(request.name());
         game.setDescription(request.description());

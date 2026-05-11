@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
+/**
+ * Request DTO used to create a purchase.
+ */
 public record PurchaseRequest(
         @NotNull
         Long userId,

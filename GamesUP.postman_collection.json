@@ -284,6 +284,38 @@
       }
     },
     {
+      "name": "Spring - Create wishlist as admin",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{adminEmail}}",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "{{adminPassword}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": 2,\n  \"gameIds\": [1]\n}"
+        },
+        "url": "{{springBaseUrl}}/api/wishlists"
+      }
+    },
+    {
       "name": "Spring - Recommendations through Python",
       "request": {
         "auth": {

@@ -1,7 +1,6 @@
 package com.gamesUP.gamesUP.config;
 
 import com.gamesUP.gamesUP.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -22,11 +21,29 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-@RequiredArgsConstructor
+/**
+ * Configures authentication, authorization and password encoding for the API.
+ */
 public class SecurityConfig {
 
     private final UserRepository userRepository;
 
+    /**
+     * Creates the security configuration with its user repository dependency.
+     *
+     * @param userRepository repository used to load users by email
+     */
+    public SecurityConfig(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    /**
+     * Defines public, client and administrator route permissions.
+     *
+     * @param http Spring Security HTTP builder
+     * @return configured security filter chain
+     * @throws Exception when Spring Security cannot build the filter chain
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -47,6 +64,11 @@ public class SecurityConfig {
                 .build();
     }
 
+    /**
+     * Loads authenticated users from the database.
+     *
+     * @return user details service based on user emails
+     */
     @Bean
     public UserDetailsService userDetailsService() {
         return email -> userRepository.findByEmail(email)
@@ -58,6 +80,13 @@ public class SecurityConfig {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email " + email));
     }
 
+    /**
+     * Configures DAO authentication with the user service and password encoder.
+     *
+     * @param userDetailsService user details lookup service
+     * @param passwordEncoder password encoder
+     * @return authentication provider
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider(
             UserDetailsService userDetailsService,
@@ -69,11 +98,23 @@ public class SecurityConfig {
         return provider;
     }
 
+    /**
+     * Exposes the Spring authentication manager.
+     *
+     * @param configuration Spring authentication configuration
+     * @return authentication manager
+     * @throws Exception when Spring cannot provide the manager
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
 
+    /**
+     * Encodes passwords with BCrypt.
+     *
+     * @return password encoder
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

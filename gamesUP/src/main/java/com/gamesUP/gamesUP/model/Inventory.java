@@ -7,15 +7,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+/**
+ * JPA entity representing the stock quantity of a game.
+ */
 @Entity
 @Table(name = "inventories")
-@Getter
-@Setter
-@NoArgsConstructor
 public class Inventory {
 
     @Id
@@ -26,4 +23,34 @@ public class Inventory {
     private Game game;
 
     private int quantity;
+
+    /**
+     * Creates an empty inventory entry for JPA.
+     */
+    public Inventory() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }

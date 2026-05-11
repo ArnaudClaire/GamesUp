@@ -8,15 +8,12 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+/**
+ * JPA entity representing a game author.
+ */
 @Entity
 @Table(name = "authors")
-@Getter
-@Setter
-@NoArgsConstructor
 public class Author {
 
     @Id
@@ -27,4 +24,34 @@ public class Author {
 
     @ManyToMany(mappedBy = "authors")
     private Set<Game> games = new HashSet<>();
+
+    /**
+     * Creates an empty author for JPA.
+     */
+    public Author() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(Set<Game> games) {
+        this.games = games;
+    }
 }

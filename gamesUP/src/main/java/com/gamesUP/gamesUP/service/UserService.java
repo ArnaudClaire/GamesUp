@@ -8,33 +8,68 @@ import com.gamesUP.gamesUP.model.Role;
 import com.gamesUP.gamesUP.model.User;
 import com.gamesUP.gamesUP.repository.UserRepository;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@RequiredArgsConstructor
 @Transactional(readOnly = true)
+/**
+ * Provides business operations for user accounts.
+ */
 public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * Creates the service with repository and password encoder dependencies.
+     *
+     * @param userRepository repository for users
+     * @param passwordEncoder password encoder used before storing credentials
+     */
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    /**
+     * Lists every user account.
+     *
+     * @return users
+     */
     public List<UserResponse> findAll() {
         return userRepository.findAll().stream().map(this::toResponse).toList();
     }
 
+    /**
+     * Finds a user by identifier.
+     *
+     * @param id user identifier
+     * @return requested user
+     */
     public UserResponse findById(Long id) {
         return toResponse(findUser(id));
     }
 
+    /**
+     * Finds a user by email.
+     *
+     * @param email user email
+     * @return requested user
+     */
     public UserResponse findByEmail(String email) {
         return userRepository.findByEmail(email)
                 .map(this::toResponse)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with email " + email));
     }
 
+    /**
+     * Creates a new account.
+     *
+     * @param request user payload
+     * @return created user
+     */
     @Transactional
     public UserResponse create(UserRequest request) {
         if (userRepository.findByEmail(request.email()).isPresent()) {
@@ -47,6 +82,13 @@ public class UserService {
         return toResponse(userRepository.save(user));
     }
 
+    /**
+     * Updates an existing account.
+     *
+     * @param id user identifier
+     * @param request user payload
+     * @return updated user
+     */
     @Transactional
     public UserResponse update(Long id, UserRequest request) {
         User user = findUser(id);
@@ -54,6 +96,11 @@ public class UserService {
         return toResponse(user);
     }
 
+    /**
+     * Deletes a user account.
+     *
+     * @param id user identifier
+     */
     @Transactional
     public void delete(Long id) {
         userRepository.delete(findUser(id));

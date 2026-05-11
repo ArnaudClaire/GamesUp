@@ -15,6 +15,9 @@ CodeApiPython/.venv/
 .metals/
 .vscode/
 
+# Assistance IA locale
+suivi avec assistance IA CODEX.md
+
 # OS files
 Thumbs.db
 .DS_Store
