@@ -13,7 +13,7 @@
 | Principes SOLID | OK | Responsabilités séparées et injection par constructeurs explicites |
 | Hibernate | OK | Entités `@Entity`, repositories Spring Data JPA, relations JPA |
 | Spring Security | OK | `SecurityConfig`, HTTP Basic, routes publiques/client/admin |
-| Tests Spring uniquement | OK | Tests MockMvc, tests d’intégration Spring, tests unitaires DTO/model |
+| Tests Spring uniquement | OK | Tests MockMvc, tests d’intégration Spring, tests unitaires model/exception |
 | API Python FastAPI | OK | `CodeApiPython/main.py` |
 | Modèle KNN | OK | `CodeApiPython/recommendation.py` avec voisins proches et similarité cosinus |
 | Communication Spring vers Python | OK | `RecommendationService` appelle `POST /recommendations` via `RestTemplate` |
@@ -472,7 +472,7 @@ cd gamesUP
 Résultat :
 
 - Build Spring : succès.
-- Tests Spring : 20 tests, 0 échec.
+- Tests Spring : 15 tests, 0 échec.
 - Couverture JaCoCo instructions : 76 pourcent.
 - Couverture JaCoCo branches : 57 pourcent.
 - Couverture JaCoCo classes : 100 pourcent.
@@ -503,6 +503,6 @@ xychart-beta
 
 Lecture du rapport :
 
-- les tests ont été découpés par domaine pour améliorer la lisibilité : santé/sécurité, catalogue, commerce, recommandations, DTO, modèles et erreurs ;
+- les tests ont été découpés par domaine pour améliorer la lisibilité : santé/sécurité, catalogue, commerce, recommandations, modèles et erreurs ;
 - les tests de branches très secondaires ont été retirés pour conserver une suite plus utile fonctionnellement ;
 - la couverture d’instructions reste supérieure au seuil demandé de 70 %.
