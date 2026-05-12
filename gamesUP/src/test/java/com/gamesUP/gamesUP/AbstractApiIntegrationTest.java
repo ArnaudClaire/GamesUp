@@ -18,6 +18,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * Classe de base des tests d'intégration HTTP de l'API GamesUP.
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 abstract class AbstractApiIntegrationTest {
@@ -31,11 +34,23 @@ abstract class AbstractApiIntegrationTest {
     @MockBean
     protected RestTemplate restTemplate;
 
+    /**
+     * Extrait l'identifiant technique renvoyé dans une réponse JSON.
+     *
+     * @param json corps JSON retourné par l'API.
+     * @return identifiant contenu dans la propriété {@code id}.
+     * @throws Exception en cas d'erreur de lecture JSON.
+     */
     protected long extractId(String json) throws Exception {
         JsonNode node = objectMapper.readTree(json);
         return node.get("id").asLong();
     }
 
+    /**
+     * Simule la réponse du service Python de recommandation pour isoler les tests Java.
+     *
+     * @throws Exception si le DTO de recommandation ne peut pas être instancié.
+     */
     @SuppressWarnings({"rawtypes", "unchecked"})
     protected void mockPythonRecommendation() throws Exception {
         Object recommendation = Class.forName("com.gamesUP.gamesUP.dto.RecommendationResponse")

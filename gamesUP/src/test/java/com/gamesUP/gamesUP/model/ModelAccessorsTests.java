@@ -8,8 +8,16 @@ import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests unitaires des accesseurs des modèles JPA.
+ */
 class ModelAccessorsTests {
 
+    /**
+     * Vérifie que les modèles de référence exposent leurs identifiants et libellés.
+     *
+     * @throws Exception si la construction réflexive d'un modèle échoue.
+     */
     @Test
     void referenceModelsExposentLeursIdentifiantsEtLibelles() throws Exception {
         Object category = model("Category");
@@ -32,6 +40,11 @@ class ModelAccessorsTests {
         assertThat(get(author, "getName")).isEqualTo("Auteur Demo");
     }
 
+    /**
+     * Vérifie les relations entre utilisateur, jeu, stock, avis, commande et liste d'envies.
+     *
+     * @throws Exception si l'accès réflexif aux accesseurs échoue.
+     */
     @Test
     void userGameInventoryReviewPurchaseEtWishlistExposentLeursRelations() throws Exception {
         Object category = model("Category");
@@ -125,18 +138,49 @@ class ModelAccessorsTests {
         assertThat(get(wishlist, "getGames")).isEqualTo(Set.of(game));
     }
 
+    /**
+     * Instancie un modèle par son nom simple.
+     *
+     * @param simpleName nom simple du modèle.
+     * @return instance du modèle demandé.
+     * @throws Exception si le type ou le constructeur est introuvable.
+     */
     private Object model(String simpleName) throws Exception {
         return modelType(simpleName).getConstructor().newInstance();
     }
 
+    /**
+     * Charge le type Java d'un modèle par son nom simple.
+     *
+     * @param simpleName nom simple du modèle.
+     * @return classe Java du modèle.
+     * @throws Exception si le type est introuvable.
+     */
     private Class<?> modelType(String simpleName) throws Exception {
         return Class.forName("com.gamesUP.gamesUP.model." + simpleName);
     }
 
+    /**
+     * Appelle un accesseur sans paramètre sur une instance.
+     *
+     * @param target instance interrogée.
+     * @param methodName nom de l'accesseur.
+     * @return valeur retournée par l'accesseur.
+     * @throws Exception si l'appel réflexif échoue.
+     */
     private Object get(Object target, String methodName) throws Exception {
         return target.getClass().getMethod(methodName).invoke(target);
     }
 
+    /**
+     * Appelle un mutateur sur une instance.
+     *
+     * @param target instance modifiée.
+     * @param methodName nom du mutateur.
+     * @param parameterType type du paramètre attendu.
+     * @param value valeur transmise au mutateur.
+     * @throws Exception si l'appel réflexif échoue.
+     */
     private void set(Object target, String methodName, Class<?> parameterType, Object value) throws Exception {
         target.getClass().getMethod(methodName, parameterType).invoke(target, value);
     }

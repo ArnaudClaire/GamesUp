@@ -9,8 +9,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
+/**
+ * Tests d'intégration du pont entre l'API Java et le service Python de recommandation.
+ */
 class RecommendationIntegrationTests extends AbstractApiIntegrationTest {
 
+    /**
+     * Vérifie que l'endpoint de recommandation relaie la réponse simulée du service Python.
+     *
+     * @throws Exception si l'appel MockMvc échoue.
+     */
     @Test
     void recommendationProxyReturnsPythonResponse() throws Exception {
         mockPythonRecommendation();
@@ -33,6 +41,11 @@ class RecommendationIntegrationTests extends AbstractApiIntegrationTest {
                 .andExpect(jsonPath("$[0].gameName").value("Azul"));
     }
 
+    /**
+     * Vérifie que l'API construit les signaux utilisateur avant d'appeler le service Python.
+     *
+     * @throws Exception si l'appel MockMvc échoue.
+     */
     @Test
     void recommendationEndpointBuildsUserSignalsBeforeCallingPython() throws Exception {
         mockPythonRecommendation();

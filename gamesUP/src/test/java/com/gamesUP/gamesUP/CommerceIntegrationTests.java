@@ -12,8 +12,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
+/**
+ * Tests d'intégration couvrant le parcours commercial principal.
+ */
 class CommerceIntegrationTests extends AbstractApiIntegrationTest {
 
+    /**
+     * Vérifie le flux administrateur complet autour des envies, avis, stocks et commandes.
+     *
+     * @throws Exception si l'appel MockMvc échoue.
+     */
     @Test
     void adminWorkflowCoversWishlistReviewsInventoryAndPurchases() throws Exception {
         long userId = extractId(mockMvc.perform(post("/api/users")

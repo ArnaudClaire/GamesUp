@@ -9,8 +9,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
+/**
+ * Tests d'intégration des réponses d'erreur exposées par l'API.
+ */
 class ErrorHandlingIntegrationTests extends AbstractApiIntegrationTest {
 
+    /**
+     * Vérifie les formats d'erreur pour les validations, absences de ressource et références invalides.
+     *
+     * @throws Exception si l'appel MockMvc échoue.
+     */
     @Test
     void apiReturnsStructuredErrorsForCommonFailures() throws Exception {
         mockMvc.perform(post("/api/users")

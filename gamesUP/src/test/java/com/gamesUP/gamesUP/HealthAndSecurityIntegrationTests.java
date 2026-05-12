@@ -10,8 +10,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
+/**
+ * Tests d'intégration des endpoints publics et des règles de sécurité.
+ */
 class HealthAndSecurityIntegrationTests extends AbstractApiIntegrationTest {
 
+    /**
+     * Vérifie que les endpoints de santé publics répondent correctement.
+     *
+     * @throws Exception si l'appel MockMvc échoue.
+     */
     @Test
     void publicHealthEndpointIsAvailable() throws Exception {
         mockMvc.perform(get("/"))
@@ -23,6 +31,11 @@ class HealthAndSecurityIntegrationTests extends AbstractApiIntegrationTest {
                 .andExpect(jsonPath("$.status").value("UP"));
     }
 
+    /**
+     * Vérifie qu'un visiteur non authentifié peut créer un compte client.
+     *
+     * @throws Exception si l'appel MockMvc échoue.
+     */
     @Test
     void anonymousUserCanCreateClientAccount() throws Exception {
         mockMvc.perform(post("/api/users")
@@ -40,6 +53,11 @@ class HealthAndSecurityIntegrationTests extends AbstractApiIntegrationTest {
                 .andExpect(jsonPath("$.role").value("CLIENT"));
     }
 
+    /**
+     * Vérifie que les routes protégées refusent les rôles ou identifiants invalides.
+     *
+     * @throws Exception si l'appel MockMvc échoue.
+     */
     @Test
     void protectedRoutesApplyExpectedSecurityRules() throws Exception {
         mockMvc.perform(get("/api/users")
@@ -51,6 +69,11 @@ class HealthAndSecurityIntegrationTests extends AbstractApiIntegrationTest {
                 .andExpect(status().isUnauthorized());
     }
 
+    /**
+     * Vérifie que l'authentification HTTP Basic charge bien l'utilisateur depuis la base.
+     *
+     * @throws Exception si l'appel MockMvc échoue.
+     */
     @Test
     void httpBasicLoadsUserFromDatabase() throws Exception {
         mockMvc.perform(post("/api/users")

@@ -11,8 +11,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
+/**
+ * Tests d'intégration du catalogue de jeux et des données de référence.
+ */
 class CatalogIntegrationTests extends AbstractApiIntegrationTest {
 
+    /**
+     * Vérifie qu'un administrateur peut créer une catégorie, créer un jeu et le retrouver par recherche.
+     *
+     * @throws Exception si l'appel MockMvc échoue.
+     */
     @Test
     void adminCanCreateReferenceAndGameThenSearchIt() throws Exception {
         long categoryId = extractId(mockMvc.perform(post("/api/categories")
@@ -49,6 +57,11 @@ class CatalogIntegrationTests extends AbstractApiIntegrationTest {
                 .andExpect(jsonPath("$[0].name").value("Terraforming Mars"));
     }
 
+    /**
+     * Vérifie que le détail d'un jeu expose le stock lorsqu'un inventaire existe.
+     *
+     * @throws Exception si l'appel MockMvc échoue.
+     */
     @Test
     void gameResponseIncludesInventoryWhenStockExists() throws Exception {
         long gameId = extractId(mockMvc.perform(post("/api/games")
