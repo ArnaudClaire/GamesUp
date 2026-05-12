@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Spring Data repository for publishers.
+ * Dépôt Spring Data pour les éditeurs.
  */
 public interface PublisherRepository extends JpaRepository<Publisher, Long> {
 

@@ -9,7 +9,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
- * JPA entity representing the stock quantity of a game.
+ * Entité JPA représentant la quantité en stock d'un jeu.
  */
 @Entity
 @Table(name = "inventories")
@@ -25,7 +25,7 @@ public class Inventory {
     private int quantity;
 
     /**
-     * Creates an empty inventory entry for JPA.
+     * Crée une entrée de stock vide pour JPA.
      */
     public Inventory() {
     }

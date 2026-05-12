@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 /**
- * Provides business operations for purchases and purchase status changes.
+ * Fournit les opérations métier liées aux commandes et à leurs changements de statut.
  */
 public class PurchaseService {
 
@@ -30,11 +30,11 @@ public class PurchaseService {
     private final GameRepository gameRepository;
 
     /**
-     * Creates the service with its repository dependencies.
+     * Crée le service avec ses dépendances vers les dépôts.
      *
-     * @param purchaseRepository repository for purchases
-     * @param userRepository repository for users
-     * @param gameRepository repository for games
+     * @param purchaseRepository dépôt des commandes
+     * @param userRepository dépôt des utilisateurs
+     * @param gameRepository dépôt des jeux
      */
     public PurchaseService(
             PurchaseRepository purchaseRepository,
@@ -47,39 +47,39 @@ public class PurchaseService {
     }
 
     /**
-     * Lists every purchase.
+     * Liste toutes les commandes.
      *
-     * @return purchases
+     * @return commandes
      */
     public List<PurchaseResponse> findAll() {
         return purchaseRepository.findAll().stream().map(this::toResponse).toList();
     }
 
     /**
-     * Lists purchases attached to one user.
+     * Liste les commandes rattachées à un utilisateur.
      *
-     * @param userId user identifier
-     * @return matching purchases
+     * @param userId identifiant utilisateur
+     * @return commandes correspondantes
      */
     public List<PurchaseResponse> findByUser(Long userId) {
         return purchaseRepository.findByUserId(userId).stream().map(this::toResponse).toList();
     }
 
     /**
-     * Finds one purchase by identifier.
+     * Recherche une commande par son identifiant.
      *
-     * @param id purchase identifier
-     * @return requested purchase
+     * @param id identifiant de la commande
+     * @return commande demandée
      */
     public PurchaseResponse findById(Long id) {
         return toResponse(findPurchase(id));
     }
 
     /**
-     * Creates a purchase and its purchase lines.
+     * Crée une commande et ses lignes.
      *
-     * @param request purchase payload
-     * @return created purchase
+     * @param request données de commande
+     * @return commande créée
      */
     @Transactional
     public PurchaseResponse create(PurchaseRequest request) {
@@ -108,10 +108,10 @@ public class PurchaseService {
     }
 
     /**
-     * Marks a purchase as paid.
+     * Marque une commande comme payée.
      *
-     * @param id purchase identifier
-     * @return updated purchase
+     * @param id identifiant de la commande
+     * @return commande mise à jour
      */
     @Transactional
     public PurchaseResponse markPaid(Long id) {
@@ -121,10 +121,10 @@ public class PurchaseService {
     }
 
     /**
-     * Marks a purchase as delivered.
+     * Marque une commande comme livrée.
      *
-     * @param id purchase identifier
-     * @return updated purchase
+     * @param id identifiant de la commande
+     * @return commande mise à jour
      */
     @Transactional
     public PurchaseResponse markDelivered(Long id) {
@@ -134,10 +134,10 @@ public class PurchaseService {
     }
 
     /**
-     * Archives a purchase.
+     * Archive une commande.
      *
-     * @param id purchase identifier
-     * @return updated purchase
+     * @param id identifiant de la commande
+     * @return commande mise à jour
      */
     @Transactional
     public PurchaseResponse archive(Long id) {

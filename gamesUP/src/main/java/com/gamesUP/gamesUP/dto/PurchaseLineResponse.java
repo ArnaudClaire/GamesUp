@@ -3,7 +3,7 @@ package com.gamesUP.gamesUP.dto;
 import java.math.BigDecimal;
 
 /**
- * Response DTO representing one purchase line.
+ * DTO de réponse représentant une ligne de commande.
  */
 public record PurchaseLineResponse(
         Long id,

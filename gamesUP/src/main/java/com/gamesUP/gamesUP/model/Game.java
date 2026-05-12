@@ -17,7 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * JPA entity representing a board game in the catalogue.
+ * Entité JPA représentant un jeu de société du catalogue.
  */
 @Entity
 @Table(name = "games")
@@ -62,7 +62,7 @@ public class Game {
     private Inventory inventory;
 
     /**
-     * Creates an empty game for JPA.
+     * Crée un jeu vide pour JPA.
      */
     public Game() {
     }

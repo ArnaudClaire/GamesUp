@@ -18,25 +18,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 /**
- * Exposes REST endpoints for category, author and publisher reference data.
+ * Expose les endpoints REST liés aux catégories, auteurs et éditeurs.
  */
 public class ReferenceController {
 
     private final ReferenceService referenceService;
 
     /**
-     * Creates the controller with the reference service dependency.
+     * Crée le contrôleur avec sa dépendance vers le service des données de référence.
      *
-     * @param referenceService service responsible for reference data
+     * @param referenceService service responsable des données de référence
      */
     public ReferenceController(ReferenceService referenceService) {
         this.referenceService = referenceService;
     }
 
     /**
-     * Lists all game categories.
+     * Liste toutes les catégories de jeux.
      *
-     * @return categories
+     * @return catégories
      */
     @GetMapping("/api/categories")
     public List<ReferenceResponse> findCategories() {
@@ -44,10 +44,10 @@ public class ReferenceController {
     }
 
     /**
-     * Creates a category.
+     * Crée une catégorie.
      *
-     * @param request validated reference payload
-     * @return created category
+     * @param request données de référence validées
+     * @return catégorie créée
      */
     @PostMapping("/api/categories")
     public ResponseEntity<ReferenceResponse> createCategory(@Valid @RequestBody ReferenceRequest request) {
@@ -56,11 +56,11 @@ public class ReferenceController {
     }
 
     /**
-     * Updates a category.
+     * Met à jour une catégorie.
      *
-     * @param id category identifier
-     * @param request validated reference payload
-     * @return updated category
+     * @param id identifiant de la catégorie
+     * @param request données de référence validées
+     * @return catégorie mise à jour
      */
     @PutMapping("/api/categories/{id}")
     public ReferenceResponse updateCategory(@PathVariable Long id, @Valid @RequestBody ReferenceRequest request) {
@@ -68,10 +68,10 @@ public class ReferenceController {
     }
 
     /**
-     * Deletes a category.
+     * Supprime une catégorie.
      *
-     * @param id category identifier
-     * @return empty response when the deletion succeeds
+     * @param id identifiant de la catégorie
+     * @return réponse vide lorsque la suppression réussit
      */
     @DeleteMapping("/api/categories/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
@@ -80,9 +80,9 @@ public class ReferenceController {
     }
 
     /**
-     * Lists all authors.
+     * Liste tous les auteurs.
      *
-     * @return authors
+     * @return auteurs
      */
     @GetMapping("/api/authors")
     public List<ReferenceResponse> findAuthors() {
@@ -90,10 +90,10 @@ public class ReferenceController {
     }
 
     /**
-     * Creates an author.
+     * Crée un auteur.
      *
-     * @param request validated reference payload
-     * @return created author
+     * @param request données de référence validées
+     * @return auteur créé
      */
     @PostMapping("/api/authors")
     public ResponseEntity<ReferenceResponse> createAuthor(@Valid @RequestBody ReferenceRequest request) {
@@ -102,11 +102,11 @@ public class ReferenceController {
     }
 
     /**
-     * Updates an author.
+     * Met à jour un auteur.
      *
-     * @param id author identifier
-     * @param request validated reference payload
-     * @return updated author
+     * @param id identifiant de l'auteur
+     * @param request données de référence validées
+     * @return auteur mis à jour
      */
     @PutMapping("/api/authors/{id}")
     public ReferenceResponse updateAuthor(@PathVariable Long id, @Valid @RequestBody ReferenceRequest request) {
@@ -114,10 +114,10 @@ public class ReferenceController {
     }
 
     /**
-     * Deletes an author.
+     * Supprime un auteur.
      *
-     * @param id author identifier
-     * @return empty response when the deletion succeeds
+     * @param id identifiant de l'auteur
+     * @return réponse vide lorsque la suppression réussit
      */
     @DeleteMapping("/api/authors/{id}")
     public ResponseEntity<Void> deleteAuthor(@PathVariable Long id) {
@@ -126,9 +126,9 @@ public class ReferenceController {
     }
 
     /**
-     * Lists all publishers.
+     * Liste tous les éditeurs.
      *
-     * @return publishers
+     * @return éditeurs
      */
     @GetMapping("/api/publishers")
     public List<ReferenceResponse> findPublishers() {
@@ -136,10 +136,10 @@ public class ReferenceController {
     }
 
     /**
-     * Creates a publisher.
+     * Crée un éditeur.
      *
-     * @param request validated reference payload
-     * @return created publisher
+     * @param request données de référence validées
+     * @return éditeur créé
      */
     @PostMapping("/api/publishers")
     public ResponseEntity<ReferenceResponse> createPublisher(@Valid @RequestBody ReferenceRequest request) {
@@ -148,11 +148,11 @@ public class ReferenceController {
     }
 
     /**
-     * Updates a publisher.
+     * Met à jour un éditeur.
      *
-     * @param id publisher identifier
-     * @param request validated reference payload
-     * @return updated publisher
+     * @param id identifiant de l'éditeur
+     * @param request données de référence validées
+     * @return éditeur mis à jour
      */
     @PutMapping("/api/publishers/{id}")
     public ReferenceResponse updatePublisher(@PathVariable Long id, @Valid @RequestBody ReferenceRequest request) {
@@ -160,10 +160,10 @@ public class ReferenceController {
     }
 
     /**
-     * Deletes a publisher.
+     * Supprime un éditeur.
      *
-     * @param id publisher identifier
-     * @return empty response when the deletion succeeds
+     * @param id identifiant de l'éditeur
+     * @return réponse vide lorsque la suppression réussit
      */
     @DeleteMapping("/api/publishers/{id}")
     public ResponseEntity<Void> deletePublisher(@PathVariable Long id) {

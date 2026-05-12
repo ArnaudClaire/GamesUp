@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 /**
- * Request DTO used to create or update a game.
+ * DTO de requête utilisé pour créer ou modifier un jeu.
  */
 public record GameRequest(
         @NotBlank

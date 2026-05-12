@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
- * JPA entity representing a game publisher.
+ * Entité JPA représentant un éditeur de jeu.
  */
 @Entity
 @Table(name = "publishers")
@@ -20,7 +20,7 @@ public class Publisher {
     private String name;
 
     /**
-     * Creates an empty publisher for JPA.
+     * Crée un éditeur vide pour JPA.
      */
     public Publisher() {
     }

@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
- * JPA entity representing a game category.
+ * Entité JPA représentant une catégorie de jeu.
  */
 @Entity
 @Table(name = "categories")
@@ -20,7 +20,7 @@ public class Category {
     private String name;
 
     /**
-     * Creates an empty category for JPA.
+     * Crée une catégorie vide pour JPA.
      */
     public Category() {
     }

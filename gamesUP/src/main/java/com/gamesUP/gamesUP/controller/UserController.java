@@ -20,25 +20,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/users")
 /**
- * Exposes REST endpoints for user accounts.
+ * Expose les endpoints REST liés aux comptes utilisateur.
  */
 public class UserController {
 
     private final UserService userService;
 
     /**
-     * Creates the controller with the user service dependency.
+     * Crée le contrôleur avec sa dépendance vers le service des utilisateurs.
      *
-     * @param userService service responsible for user operations
+     * @param userService service responsable des opérations liées aux utilisateurs
      */
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
     /**
-     * Lists every user account.
+     * Liste tous les comptes utilisateur.
      *
-     * @return users
+     * @return utilisateurs
      */
     @GetMapping
     public List<UserResponse> findAll() {
@@ -46,10 +46,10 @@ public class UserController {
     }
 
     /**
-     * Returns the authenticated user's account.
+     * Renvoie le compte de l'utilisateur authentifié.
      *
-     * @param principal authenticated user principal
-     * @return current user
+     * @param principal principal de l'utilisateur authentifié
+     * @return utilisateur courant
      */
     @GetMapping("/me")
     public UserResponse me(Principal principal) {
@@ -57,10 +57,10 @@ public class UserController {
     }
 
     /**
-     * Finds a user by identifier.
+     * Recherche un utilisateur par son identifiant.
      *
-     * @param id user identifier
-     * @return requested user
+     * @param id identifiant utilisateur
+     * @return utilisateur demandé
      */
     @GetMapping("/{id}")
     public UserResponse findById(@PathVariable Long id) {
@@ -68,10 +68,10 @@ public class UserController {
     }
 
     /**
-     * Creates a client account.
+     * Crée un compte client.
      *
-     * @param request validated user payload
-     * @return created user response with its location
+     * @param request données utilisateur validées
+     * @return réponse de l'utilisateur créé avec son emplacement
      */
     @PostMapping
     public ResponseEntity<UserResponse> create(@Valid @RequestBody UserRequest request) {
@@ -80,11 +80,11 @@ public class UserController {
     }
 
     /**
-     * Updates a user account.
+     * Met à jour un compte utilisateur.
      *
-     * @param id user identifier
-     * @param request validated user payload
-     * @return updated user
+     * @param id identifiant utilisateur
+     * @param request données utilisateur validées
+     * @return utilisateur mis à jour
      */
     @PutMapping("/{id}")
     public UserResponse update(@PathVariable Long id, @Valid @RequestBody UserRequest request) {
@@ -92,10 +92,10 @@ public class UserController {
     }
 
     /**
-     * Deletes a user account.
+     * Supprime un compte utilisateur.
      *
-     * @param id user identifier
-     * @return empty response when the deletion succeeds
+     * @param id identifiant utilisateur
+     * @return réponse vide lorsque la suppression réussit
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {

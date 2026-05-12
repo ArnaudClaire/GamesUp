@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Spring Data repository for categories.
+ * Dépôt Spring Data pour les catégories.
  */
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 

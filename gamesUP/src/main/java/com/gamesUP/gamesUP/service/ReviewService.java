@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 /**
- * Provides business operations for customer reviews.
+ * Fournit les opérations métier liées aux avis clients.
  */
 public class ReviewService {
 
@@ -25,11 +25,11 @@ public class ReviewService {
     private final GameRepository gameRepository;
 
     /**
-     * Creates the service with its repository dependencies.
+     * Crée le service avec ses dépendances vers les dépôts.
      *
-     * @param avisRepository repository for reviews
-     * @param userRepository repository for users
-     * @param gameRepository repository for games
+     * @param avisRepository dépôt des avis
+     * @param userRepository dépôt des utilisateurs
+     * @param gameRepository dépôt des jeux
      */
     public ReviewService(
             AvisRepository avisRepository,
@@ -42,11 +42,11 @@ public class ReviewService {
     }
 
     /**
-     * Lists reviews, optionally filtered by game or user.
+     * Liste les avis, avec un filtre optionnel par jeu ou utilisateur.
      *
-     * @param gameId optional game identifier
-     * @param userId optional user identifier
-     * @return matching reviews
+     * @param gameId identifiant de jeu optionnel
+     * @param userId identifiant utilisateur optionnel
+     * @return avis correspondants
      */
     public List<ReviewResponse> findAll(Long gameId, Long userId) {
         if (gameId != null) {
@@ -59,10 +59,10 @@ public class ReviewService {
     }
 
     /**
-     * Creates a review for a user and game.
+     * Crée un avis pour un utilisateur et un jeu.
      *
-     * @param request review payload
-     * @return created review
+     * @param request données de l'avis
+     * @return avis créé
      */
     @Transactional
     public ReviewResponse create(ReviewRequest request) {
@@ -80,9 +80,9 @@ public class ReviewService {
     }
 
     /**
-     * Deletes a review.
+     * Supprime un avis.
      *
-     * @param id review identifier
+     * @param id identifiant de l'avis
      */
     @Transactional
     public void delete(Long id) {

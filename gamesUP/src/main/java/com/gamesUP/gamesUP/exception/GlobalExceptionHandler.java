@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 /**
- * Centralizes REST error responses returned by the API.
+ * Centralise les réponses d'erreur REST renvoyées par l'API.
  */
 public class GlobalExceptionHandler {
 

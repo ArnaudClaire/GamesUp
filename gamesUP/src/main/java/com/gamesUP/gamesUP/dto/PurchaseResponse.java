@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Response DTO returned for purchases.
+ * DTO de réponse renvoyé pour les commandes.
  */
 public record PurchaseResponse(
         Long id,

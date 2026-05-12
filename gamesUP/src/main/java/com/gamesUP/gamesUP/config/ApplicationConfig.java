@@ -7,15 +7,15 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 /**
- * Provides reusable infrastructure beans for the application.
+ * Fournit les beans d'infrastructure réutilisables de l'application.
  */
 public class ApplicationConfig {
 
     /**
-     * Creates the HTTP client used to call external services.
+     * Crée le client HTTP utilisé pour appeler les services externes.
      *
-     * @param builder Spring Boot RestTemplate builder
-     * @return configured RestTemplate
+     * @param builder builder RestTemplate de Spring Boot
+     * @return RestTemplate configuré
      */
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {

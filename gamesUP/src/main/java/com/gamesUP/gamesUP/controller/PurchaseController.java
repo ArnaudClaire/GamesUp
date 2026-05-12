@@ -19,26 +19,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/purchases")
 /**
- * Exposes REST endpoints for purchases and their delivery workflow.
+ * Expose les endpoints REST liés aux commandes et à leur cycle de livraison.
  */
 public class PurchaseController {
 
     private final PurchaseService purchaseService;
 
     /**
-     * Creates the controller with the purchase service dependency.
+     * Crée le contrôleur avec sa dépendance vers le service des commandes.
      *
-     * @param purchaseService service responsible for purchase operations
+     * @param purchaseService service responsable des opérations de commande
      */
     public PurchaseController(PurchaseService purchaseService) {
         this.purchaseService = purchaseService;
     }
 
     /**
-     * Lists every purchase or filters purchases by user.
+     * Liste toutes les commandes ou les filtre par utilisateur.
      *
-     * @param userId optional user identifier
-     * @return matching purchases
+     * @param userId identifiant utilisateur optionnel
+     * @return commandes correspondantes
      */
     @GetMapping
     public List<PurchaseResponse> findAll(@RequestParam(required = false) Long userId) {
@@ -46,10 +46,10 @@ public class PurchaseController {
     }
 
     /**
-     * Finds a purchase by identifier.
+     * Recherche une commande par son identifiant.
      *
-     * @param id purchase identifier
-     * @return requested purchase
+     * @param id identifiant de la commande
+     * @return commande demandée
      */
     @GetMapping("/{id}")
     public PurchaseResponse findById(@PathVariable Long id) {
@@ -57,10 +57,10 @@ public class PurchaseController {
     }
 
     /**
-     * Creates a new purchase.
+     * Crée une nouvelle commande.
      *
-     * @param request validated purchase payload
-     * @return created purchase response with its location
+     * @param request données de commande validées
+     * @return réponse de la commande créée avec son emplacement
      */
     @PostMapping
     public ResponseEntity<PurchaseResponse> create(@Valid @RequestBody PurchaseRequest request) {
@@ -69,10 +69,10 @@ public class PurchaseController {
     }
 
     /**
-     * Marks a purchase as paid.
+     * Marque une commande comme payée.
      *
-     * @param id purchase identifier
-     * @return updated purchase
+     * @param id identifiant de la commande
+     * @return commande mise à jour
      */
     @PatchMapping("/{id}/paid")
     public PurchaseResponse markPaid(@PathVariable Long id) {
@@ -80,10 +80,10 @@ public class PurchaseController {
     }
 
     /**
-     * Marks a purchase as delivered.
+     * Marque une commande comme livrée.
      *
-     * @param id purchase identifier
-     * @return updated purchase
+     * @param id identifiant de la commande
+     * @return commande mise à jour
      */
     @PatchMapping("/{id}/delivered")
     public PurchaseResponse markDelivered(@PathVariable Long id) {
@@ -91,10 +91,10 @@ public class PurchaseController {
     }
 
     /**
-     * Archives a purchase.
+     * Archive une commande.
      *
-     * @param id purchase identifier
-     * @return updated purchase
+     * @param id identifiant de la commande
+     * @return commande mise à jour
      */
     @PatchMapping("/{id}/archive")
     public PurchaseResponse archive(@PathVariable Long id) {

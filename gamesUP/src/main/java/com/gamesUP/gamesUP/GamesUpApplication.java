@@ -5,14 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 /**
- * Starts the GamesUP Spring Boot API.
+ * Démarre l'API Spring Boot GamesUP.
  */
 public class GamesUpApplication {
 
 	/**
-	 * Application entry point.
+	 * Point d'entrée de l'application.
 	 *
-	 * @param args command-line arguments
+	 * @param args arguments de ligne de commande
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(GamesUpApplication.class, args);

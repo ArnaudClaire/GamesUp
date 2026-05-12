@@ -5,15 +5,15 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Spring Data repository for inventory entries.
+ * Dépôt Spring Data pour les entrées de stock.
  */
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
 
     /**
-     * Finds the stock entry attached to one game.
+     * Recherche l'entrée de stock associée à un jeu.
      *
-     * @param gameId game identifier
-     * @return matching stock entry when present
+     * @param gameId identifiant du jeu
+     * @return entrée de stock correspondante, si elle existe
      */
     Optional<Inventory> findByGameId(Long gameId);
 }

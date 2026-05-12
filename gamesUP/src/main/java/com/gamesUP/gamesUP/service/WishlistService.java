@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Provides business operations for user wishlists.
+ * Fournit les opérations métier liées aux listes d'envies des utilisateurs.
  */
 @Service
 @Transactional(readOnly = true)
@@ -30,11 +30,11 @@ public class WishlistService {
     private final GameRepository gameRepository;
 
     /**
-     * Creates the service with its repository dependencies.
+     * Crée le service avec ses dépendances vers les dépôts.
      *
-     * @param wishlistRepository repository for wishlists
-     * @param userRepository repository for users
-     * @param gameRepository repository for games
+     * @param wishlistRepository dépôt des listes d'envies
+     * @param userRepository dépôt des utilisateurs
+     * @param gameRepository dépôt des jeux
      */
     public WishlistService(
             WishlistRepository wishlistRepository,
@@ -47,29 +47,29 @@ public class WishlistService {
     }
 
     /**
-     * Lists every wishlist.
+     * Liste toutes les listes d'envies.
      *
-     * @return wishlists
+     * @return listes d'envies
      */
     public List<WishlistResponse> findAll() {
         return wishlistRepository.findAll().stream().map(this::toResponse).toList();
     }
 
     /**
-     * Finds one wishlist by identifier.
+     * Recherche une liste d'envies par son identifiant.
      *
-     * @param id wishlist identifier
-     * @return requested wishlist
+     * @param id identifiant de la liste d'envies
+     * @return liste d'envies demandée
      */
     public WishlistResponse findById(Long id) {
         return toResponse(findWishlist(id));
     }
 
     /**
-     * Finds the wishlist owned by one user.
+     * Recherche la liste d'envies possédée par un utilisateur.
      *
-     * @param userId user identifier
-     * @return requested wishlist
+     * @param userId identifiant utilisateur
+     * @return liste d'envies demandée
      */
     public WishlistResponse findByUser(Long userId) {
         return wishlistRepository.findByUserId(userId)
@@ -78,10 +78,10 @@ public class WishlistService {
     }
 
     /**
-     * Creates a wishlist.
+     * Crée une liste d'envies.
      *
-     * @param request wishlist payload
-     * @return created wishlist
+     * @param request données de liste d'envies
+     * @return liste d'envies créée
      */
     @Transactional
     public WishlistResponse create(WishlistRequest request) {
@@ -91,11 +91,11 @@ public class WishlistService {
     }
 
     /**
-     * Updates an existing wishlist.
+     * Met à jour une liste d'envies existante.
      *
-     * @param id wishlist identifier
-     * @param request wishlist payload
-     * @return updated wishlist
+     * @param id identifiant de la liste d'envies
+     * @param request données de liste d'envies
+     * @return liste d'envies mise à jour
      */
     @Transactional
     public WishlistResponse update(Long id, WishlistRequest request) {
@@ -105,9 +105,9 @@ public class WishlistService {
     }
 
     /**
-     * Deletes a wishlist.
+     * Supprime une liste d'envies.
      *
-     * @param id wishlist identifier
+     * @param id identifiant de la liste d'envies
      */
     @Transactional
     public void delete(Long id) {

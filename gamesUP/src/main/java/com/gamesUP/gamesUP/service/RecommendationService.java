@@ -23,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 @Transactional(readOnly = true)
 /**
- * Builds recommendation requests and delegates scoring to the Python API.
+ * Construit les requêtes de recommandation et délègue le calcul du score à l'API Python.
  */
 public class RecommendationService {
 
@@ -36,12 +36,12 @@ public class RecommendationService {
     private String recommendationApiUrl;
 
     /**
-     * Creates the service with HTTP and persistence dependencies.
+     * Crée le service avec ses dépendances HTTP et de persistance.
      *
-     * @param restTemplate HTTP client used to call the Python API
-     * @param userRepository repository for users
-     * @param purchaseRepository repository for purchases
-     * @param avisRepository repository for reviews
+     * @param restTemplate client HTTP utilisé pour appeler l'API Python
+     * @param userRepository dépôt des utilisateurs
+     * @param purchaseRepository dépôt des commandes
+     * @param avisRepository dépôt des avis
      */
     public RecommendationService(
             RestTemplate restTemplate,
@@ -56,10 +56,10 @@ public class RecommendationService {
     }
 
     /**
-     * Builds signals from a stored user and requests recommendations.
+     * Construit les signaux d'un utilisateur enregistré et demande des recommandations.
      *
-     * @param userId user identifier
-     * @return recommendations returned by the Python API
+     * @param userId identifiant utilisateur
+     * @return recommandations renvoyées par l'API Python
      */
     public List<RecommendationResponse> recommendForUser(Long userId) {
         if (!userRepository.existsById(userId)) {
@@ -71,10 +71,10 @@ public class RecommendationService {
     }
 
     /**
-     * Sends an explicit recommendation request to the Python API.
+     * Envoie une requête de recommandation explicite à l'API Python.
      *
-     * @param request recommendation payload
-     * @return recommendations returned by the Python API
+     * @param request données de recommandation
+     * @return recommandations renvoyées par l'API Python
      */
     public List<RecommendationResponse> recommend(RecommendationRequest request) {
         return restTemplate.exchange(

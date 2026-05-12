@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * JPA entity representing a customer purchase.
+ * Entité JPA représentant une commande client.
  */
 @Entity
 @Table(name = "purchases")
@@ -39,7 +39,7 @@ public class Purchase {
     private boolean archived;
 
     /**
-     * Creates an empty purchase for JPA.
+     * Crée une commande vide pour JPA.
      */
     public Purchase() {
     }

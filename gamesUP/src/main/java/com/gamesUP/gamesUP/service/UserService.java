@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 /**
- * Provides business operations for user accounts.
+ * Fournit les opérations métier liées aux comptes utilisateur.
  */
 public class UserService {
 
@@ -23,10 +23,10 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     /**
-     * Creates the service with repository and password encoder dependencies.
+     * Crée le service avec ses dépendances vers le dépôt et l'encodeur de mots de passe.
      *
-     * @param userRepository repository for users
-     * @param passwordEncoder password encoder used before storing credentials
+     * @param userRepository dépôt des utilisateurs
+     * @param passwordEncoder encodeur de mot de passe utilisé avant l'enregistrement des identifiants
      */
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -34,29 +34,29 @@ public class UserService {
     }
 
     /**
-     * Lists every user account.
+     * Liste tous les comptes utilisateur.
      *
-     * @return users
+     * @return utilisateurs
      */
     public List<UserResponse> findAll() {
         return userRepository.findAll().stream().map(this::toResponse).toList();
     }
 
     /**
-     * Finds a user by identifier.
+     * Recherche un utilisateur par son identifiant.
      *
-     * @param id user identifier
-     * @return requested user
+     * @param id identifiant utilisateur
+     * @return utilisateur demandé
      */
     public UserResponse findById(Long id) {
         return toResponse(findUser(id));
     }
 
     /**
-     * Finds a user by email.
+     * Recherche un utilisateur par email.
      *
      * @param email user email
-     * @return requested user
+     * @return utilisateur demandé
      */
     public UserResponse findByEmail(String email) {
         return userRepository.findByEmail(email)
@@ -65,10 +65,10 @@ public class UserService {
     }
 
     /**
-     * Creates a new account.
+     * Crée un nouveau compte.
      *
-     * @param request user payload
-     * @return created user
+     * @param request données utilisateur
+     * @return utilisateur créé
      */
     @Transactional
     public UserResponse create(UserRequest request) {
@@ -83,11 +83,11 @@ public class UserService {
     }
 
     /**
-     * Updates an existing account.
+     * Met à jour un compte existant.
      *
-     * @param id user identifier
-     * @param request user payload
-     * @return updated user
+     * @param id identifiant utilisateur
+     * @param request données utilisateur
+     * @return utilisateur mis à jour
      */
     @Transactional
     public UserResponse update(Long id, UserRequest request) {
@@ -97,9 +97,9 @@ public class UserService {
     }
 
     /**
-     * Deletes a user account.
+     * Supprime un compte utilisateur.
      *
-     * @param id user identifier
+     * @param id identifiant utilisateur
      */
     @Transactional
     public void delete(Long id) {

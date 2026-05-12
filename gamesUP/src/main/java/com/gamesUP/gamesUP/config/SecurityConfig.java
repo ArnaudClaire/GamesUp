@@ -22,27 +22,27 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @EnableMethodSecurity
 /**
- * Configures authentication, authorization and password encoding for the API.
+ * Configure l'authentification, les autorisations et l'encodage des mots de passe de l'API.
  */
 public class SecurityConfig {
 
     private final UserRepository userRepository;
 
     /**
-     * Creates the security configuration with its user repository dependency.
+     * Crée la configuration de sécurité avec sa dépendance vers le dépôt des utilisateurs.
      *
-     * @param userRepository repository used to load users by email
+     * @param userRepository dépôt utilisé pour charger les utilisateurs par email
      */
     public SecurityConfig(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     /**
-     * Defines public, client and administrator route permissions.
+     * Définit les droits d'accès des routes publiques, client et administrateur.
      *
-     * @param http Spring Security HTTP builder
-     * @return configured security filter chain
-     * @throws Exception when Spring Security cannot build the filter chain
+     * @param http builder HTTP de Spring Security
+     * @return chaîne de filtres de sécurité configurée
+     * @throws Exception lorsque Spring Security ne peut pas construire la chaîne de filtres
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -65,7 +65,7 @@ public class SecurityConfig {
     }
 
     /**
-     * Loads authenticated users from the database.
+     * Charge les utilisateurs authentifiés depuis la base de données.
      *
      * @return user details service based on user emails
      */
@@ -99,11 +99,11 @@ public class SecurityConfig {
     }
 
     /**
-     * Exposes the Spring authentication manager.
+     * Expose le gestionnaire d'authentification Spring.
      *
-     * @param configuration Spring authentication configuration
+     * @param configuration configuration d'authentification Spring
      * @return authentication manager
-     * @throws Exception when Spring cannot provide the manager
+     * @throws Exception lorsque Spring ne peut pas fournir le gestionnaire
      */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {

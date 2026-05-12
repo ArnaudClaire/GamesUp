@@ -7,15 +7,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 /**
- * Spring Data repository for games and game search.
+ * Dépôt Spring Data pour les jeux et la recherche de jeux.
  */
 public interface GameRepository extends JpaRepository<Game, Long> {
 
     /**
-     * Searches games by title, genre, category, publisher or author.
+     * Recherche les jeux par titre, genre, catégorie, éditeur ou auteur.
      *
-     * @param keyword free-text keyword
-     * @return matching games
+     * @param keyword mot-clé de recherche en texte libre
+     * @return jeux correspondants
      */
     @Query("""
             select distinct g

@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Set;
 
 /**
- * Request DTO used to create or update a wishlist.
+ * DTO de requête utilisé pour créer ou modifier une liste d'envies.
  */
 public record WishlistRequest(
         @NotNull

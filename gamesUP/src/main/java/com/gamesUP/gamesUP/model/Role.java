@@ -1,7 +1,7 @@
 package com.gamesUP.gamesUP.model;
 
 /**
- * Application roles used by Spring Security.
+ * Rôles applicatifs utilisés par Spring Security.
  */
 public enum Role {
     CLIENT,

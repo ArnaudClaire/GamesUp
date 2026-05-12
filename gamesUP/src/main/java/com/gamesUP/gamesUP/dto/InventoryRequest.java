@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 /**
- * Request DTO used to create or update stock quantities.
+ * DTO de requête utilisé pour créer ou modifier les quantités en stock.
  */
 public record InventoryRequest(
         @NotNull

@@ -3,7 +3,7 @@ package com.gamesUP.gamesUP.dto;
 import java.util.List;
 
 /**
- * Request DTO sent to the recommendation API.
+ * DTO de requête envoyé à l'API de recommandation.
  */
 public record RecommendationRequest(
         Long userId,

@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * JPA entity representing a user wishlist.
+ * Entité JPA représentant la liste d'envies d'un utilisateur.
  */
 @Entity
 @Table(name = "wishlists")
@@ -29,7 +29,7 @@ public class Wishlist {
     private Set<Game> games = new HashSet<>();
 
     /**
-     * Creates an empty wishlist for JPA.
+     * Crée une liste d'envies vide pour JPA.
      */
     public Wishlist() {
     }

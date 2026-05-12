@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 import java.math.BigDecimal;
 
 /**
- * JPA entity representing one line of a purchase.
+ * Entité JPA représentant une ligne de commande.
  */
 @Entity
 @Table(name = "purchase_lines")
@@ -31,7 +31,7 @@ public class PurchaseLine {
     private BigDecimal unitPrice;
 
     /**
-     * Creates an empty purchase line for JPA.
+     * Crée une ligne de commande vide pour JPA.
      */
     public PurchaseLine() {
     }

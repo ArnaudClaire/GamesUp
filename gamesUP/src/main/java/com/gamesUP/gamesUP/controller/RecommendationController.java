@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/recommendations")
 /**
- * Exposes REST endpoints used to request game recommendations.
+ * Expose les endpoints REST utilisés pour demander des recommandations de jeux.
  */
 public class RecommendationController {
 
@@ -24,10 +24,10 @@ public class RecommendationController {
     private final UserService userService;
 
     /**
-     * Creates the controller with recommendation and user services.
+     * Crée le contrôleur avec les services de recommandation et d'utilisateurs.
      *
-     * @param recommendationService service responsible for recommendation calls
-     * @param userService service used to resolve the authenticated user
+     * @param recommendationService service responsable des appels de recommandation
+     * @param userService service utilisé pour résoudre l'utilisateur authentifié
      */
     public RecommendationController(RecommendationService recommendationService, UserService userService) {
         this.recommendationService = recommendationService;
@@ -35,10 +35,10 @@ public class RecommendationController {
     }
 
     /**
-     * Requests recommendations for the authenticated user.
+     * Demande les recommandations de l'utilisateur authentifié.
      *
-     * @param principal authenticated user principal
-     * @return recommendations returned by the Python API
+     * @param principal principal de l'utilisateur authentifié
+     * @return recommandations renvoyées par l'API Python
      */
     @GetMapping("/me")
     public List<RecommendationResponse> recommendForCurrentUser(Principal principal) {
@@ -46,10 +46,10 @@ public class RecommendationController {
     }
 
     /**
-     * Requests recommendations for a user selected by an administrator.
+     * Demande les recommandations d'un utilisateur sélectionné par un administrateur.
      *
-     * @param userId user identifier
-     * @return recommendations returned by the Python API
+     * @param userId identifiant utilisateur
+     * @return recommandations renvoyées par l'API Python
      */
     @GetMapping("/users/{userId}")
     public List<RecommendationResponse> recommendForUser(@PathVariable Long userId) {
@@ -57,10 +57,10 @@ public class RecommendationController {
     }
 
     /**
-     * Sends explicit recommendation signals to the Python API.
+     * Envoie des signaux de recommandation explicites à l'API Python.
      *
-     * @param request recommendation payload
-     * @return recommendations returned by the Python API
+     * @param request données de recommandation
+     * @return recommandations renvoyées par l'API Python
      */
     @PostMapping
     public List<RecommendationResponse> recommend(@RequestBody RecommendationRequest request) {

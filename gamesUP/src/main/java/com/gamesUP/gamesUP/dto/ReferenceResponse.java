@@ -1,7 +1,7 @@
 package com.gamesUP.gamesUP.dto;
 
 /**
- * Response DTO returned for reference data.
+ * DTO de réponse renvoyé pour les données de référence.
  */
 public record ReferenceResponse(
         Long id,

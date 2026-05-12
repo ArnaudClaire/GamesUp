@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
- * JPA entity representing a client or administrator account.
+ * Entité JPA représentant un compte client ou administrateur.
  */
 @Entity
 @Table(name = "users")
@@ -33,7 +33,7 @@ public class User {
     private Role role = Role.CLIENT;
 
     /**
-     * Creates an empty user for JPA.
+     * Crée un utilisateur vide pour JPA.
      */
     public User() {
     }

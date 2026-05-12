@@ -1,7 +1,7 @@
 package com.gamesUP.gamesUP.exception;
 
 /**
- * Exception thrown when a requested resource cannot be found.
+ * Exception levée lorsqu'une ressource demandée est introuvable.
  */
 public class ResourceNotFoundException extends RuntimeException {
 

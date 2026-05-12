@@ -1,7 +1,7 @@
 package com.gamesUP.gamesUP.dto;
 
 /**
- * Response DTO returned by the recommendation API.
+ * DTO de réponse renvoyé par l'API de recommandation.
  */
 public record RecommendationResponse(
         Long gameId,

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 /**
- * Response DTO returned for game catalogue entries.
+ * DTO de réponse renvoyé pour les entrées du catalogue de jeux.
  */
 public record GameResponse(
         Long id,

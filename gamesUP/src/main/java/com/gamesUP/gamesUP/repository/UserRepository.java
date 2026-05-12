@@ -5,15 +5,15 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Spring Data repository for user accounts.
+ * Dépôt Spring Data pour les comptes utilisateur.
  */
 public interface UserRepository extends JpaRepository<User, Long> {
 
     /**
-     * Finds a user by email.
+     * Recherche un utilisateur par email.
      *
      * @param email user email
-     * @return matching user when present
+     * @return utilisateur correspondant, s'il existe
      */
     Optional<User> findByEmail(String email);
 }

@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 /**
- * Request DTO used to create a purchase.
+ * DTO de requête utilisé pour créer une commande.
  */
 public record PurchaseRequest(
         @NotNull

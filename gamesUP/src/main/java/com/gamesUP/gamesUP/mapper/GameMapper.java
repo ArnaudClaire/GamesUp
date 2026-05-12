@@ -15,15 +15,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 /**
- * Maps game entities to API responses and applies request data to entities.
+ * Mappe les entités de jeu vers les réponses API et applique les données de requête aux entités.
  */
 public class GameMapper {
 
     /**
-     * Converts a game entity to its public response DTO.
+     * Convertit une entité jeu en DTO de réponse publique.
      *
-     * @param game game entity
-     * @return public game response
+     * @param game entité jeu
+     * @return réponse publique du jeu
      */
     public GameResponse toResponse(Game game) {
         return new GameResponse(
@@ -44,10 +44,10 @@ public class GameMapper {
     }
 
     /**
-     * Copies writable request fields to a game entity.
+     * Copie les champs modifiables d'une requête vers une entité jeu.
      *
-     * @param game target game entity
-     * @param request source request DTO
+     * @param game entité jeu cible
+     * @param request DTO de requête source
      */
     public void updateEntity(Game game, GameRequest request) {
         game.setName(request.name());

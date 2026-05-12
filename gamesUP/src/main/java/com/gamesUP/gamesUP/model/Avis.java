@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
- * JPA entity representing a customer review.
+ * Entité JPA représentant un avis client.
  */
 @Entity
 @Table(name = "reviews")
@@ -32,7 +32,7 @@ public class Avis {
     private Game game;
 
     /**
-     * Creates an empty review for JPA.
+     * Crée un avis vide pour JPA.
      */
     public Avis() {
     }

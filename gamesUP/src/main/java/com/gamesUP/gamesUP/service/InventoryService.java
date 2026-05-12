@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 /**
- * Provides business operations for stock quantities.
+ * Fournit les opérations métier liées aux quantités en stock.
  */
 public class InventoryService {
 
@@ -22,10 +22,10 @@ public class InventoryService {
     private final GameRepository gameRepository;
 
     /**
-     * Creates the service with its repository dependencies.
+     * Crée le service avec ses dépendances vers les dépôts.
      *
-     * @param inventoryRepository repository for inventory entries
-     * @param gameRepository repository for games
+     * @param inventoryRepository dépôt des entrées de stock
+     * @param gameRepository dépôt des jeux
      */
     public InventoryService(InventoryRepository inventoryRepository, GameRepository gameRepository) {
         this.inventoryRepository = inventoryRepository;
@@ -33,19 +33,19 @@ public class InventoryService {
     }
 
     /**
-     * Lists all inventory entries.
+     * Liste toutes les entrées de stock.
      *
-     * @return current inventory entries
+     * @return entrées de stock actuelles
      */
     public List<InventoryResponse> findAll() {
         return inventoryRepository.findAll().stream().map(this::toResponse).toList();
     }
 
     /**
-     * Creates or updates the stock entry attached to a game.
+     * Crée ou met à jour l'entrée de stock associée à un jeu.
      *
-     * @param request inventory payload
-     * @return updated inventory entry
+     * @param request données de stock
+     * @return entrée de stock mise à jour
      */
     @Transactional
     public InventoryResponse upsert(InventoryRequest request) {

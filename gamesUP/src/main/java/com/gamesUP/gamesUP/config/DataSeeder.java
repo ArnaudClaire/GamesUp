@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 /**
- * Inserts a small demonstration dataset when seed data is enabled.
+ * Insère un petit jeu de données de démonstration lorsque l'initialisation est activée.
  */
 public class DataSeeder implements CommandLineRunner {
 
@@ -38,15 +38,15 @@ public class DataSeeder implements CommandLineRunner {
     private boolean enabled;
 
     /**
-     * Creates the seeder with all repositories needed by the demo dataset.
+     * Crée l'initialiseur avec tous les dépôts nécessaires au jeu de données de démonstration.
      *
-     * @param userRepository repository for users
-     * @param categoryRepository repository for categories
-     * @param authorRepository repository for authors
-     * @param publisherRepository repository for publishers
-     * @param gameRepository repository for games
-     * @param inventoryRepository repository for inventory entries
-     * @param passwordEncoder password encoder for demo accounts
+     * @param userRepository dépôt des utilisateurs
+     * @param categoryRepository dépôt des catégories
+     * @param authorRepository dépôt des auteurs
+     * @param publisherRepository dépôt des éditeurs
+     * @param gameRepository dépôt des jeux
+     * @param inventoryRepository dépôt des entrées de stock
+     * @param passwordEncoder encodeur de mot de passe des comptes de démonstration
      */
     public DataSeeder(
             UserRepository userRepository,
@@ -67,9 +67,9 @@ public class DataSeeder implements CommandLineRunner {
     }
 
     /**
-     * Seeds the database if it is empty and seed data is enabled.
+     * Alimente la base de données si elle est vide et si l'initialisation est activée.
      *
-     * @param args command-line arguments
+     * @param args arguments de ligne de commande
      */
     @Override
     public void run(String... args) {

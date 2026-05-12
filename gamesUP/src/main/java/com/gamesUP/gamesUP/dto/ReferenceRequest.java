@@ -3,7 +3,7 @@ package com.gamesUP.gamesUP.dto;
 import jakarta.validation.constraints.NotBlank;
 
 /**
- * Request DTO used to create or update reference data.
+ * DTO de requête utilisé pour créer ou modifier une donnée de référence.
  */
 public record ReferenceRequest(
         @NotBlank

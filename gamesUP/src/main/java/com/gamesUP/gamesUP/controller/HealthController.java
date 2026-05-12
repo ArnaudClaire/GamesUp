@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 /**
- * Exposes public endpoints used to verify that the API is running.
+ * Expose les endpoints publics utilisés pour vérifier que l'API fonctionne.
  */
 public class HealthController {
 
     /**
-     * Returns a public welcome message.
+     * Renvoie un message d'accueil public.
      *
      * @return API status message
      */
@@ -22,9 +22,9 @@ public class HealthController {
     }
 
     /**
-     * Returns technical health information for smoke tests.
+     * Renvoie des informations techniques de santé pour les tests de démarrage.
      *
-     * @return health status payload
+     * @return données d'état de santé
      */
     @GetMapping("/api/health")
     public Map<String, Object> health() {

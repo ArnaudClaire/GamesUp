@@ -3,7 +3,7 @@ package com.gamesUP.gamesUP.dto;
 import com.gamesUP.gamesUP.model.Role;
 
 /**
- * Response DTO returned for user accounts.
+ * DTO de réponse renvoyé pour les comptes utilisateur.
  */
 public record UserResponse(
         Long id,

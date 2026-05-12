@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Spring Data repository for authors.
+ * Dépôt Spring Data pour les auteurs.
  */
 public interface AuthorRepository extends JpaRepository<Author, Long> {
 

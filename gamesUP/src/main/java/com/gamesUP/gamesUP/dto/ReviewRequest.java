@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 /**
- * Request DTO used to create a review.
+ * DTO de requête utilisé pour créer un avis.
  */
 public record ReviewRequest(
         @NotNull

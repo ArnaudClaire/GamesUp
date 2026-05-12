@@ -3,7 +3,7 @@ package com.gamesUP.gamesUP.dto;
 import java.util.Set;
 
 /**
- * Response DTO returned for wishlists.
+ * DTO de réponse renvoyé pour les listes d'envies.
  */
 public record WishlistResponse(
         Long id,

@@ -5,15 +5,15 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Spring Data repository for purchases.
+ * Dépôt Spring Data pour les commandes.
  */
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 
     /**
-     * Finds purchases made by one user.
+     * Recherche les commandes passées par un utilisateur.
      *
-     * @param userId user identifier
-     * @return matching purchases
+     * @param userId identifiant utilisateur
+     * @return commandes correspondantes
      */
     List<Purchase> findByUserId(Long userId);
 }

@@ -1,7 +1,7 @@
 package com.gamesUP.gamesUP.dto;
 
 /**
- * Response DTO returned for stock quantities.
+ * DTO de réponse renvoyé pour les quantités en stock.
  */
 public record InventoryResponse(
         Long id,

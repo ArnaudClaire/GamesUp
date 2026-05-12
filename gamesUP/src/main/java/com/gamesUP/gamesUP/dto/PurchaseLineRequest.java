@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 /**
- * Request DTO representing one purchase line.
+ * DTO de requête représentant une ligne de commande.
  */
 public record PurchaseLineRequest(
         @NotNull

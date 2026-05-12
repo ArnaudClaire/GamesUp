@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 /**
- * Request DTO used to create or update a user account.
+ * DTO de requête utilisé pour créer ou modifier un compte utilisateur.
  */
 public record UserRequest(
         @NotBlank

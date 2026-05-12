@@ -14,25 +14,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/inventory")
 /**
- * Exposes REST endpoints for stock quantities.
+ * Expose les endpoints REST liés aux quantités en stock.
  */
 public class InventoryController {
 
     private final InventoryService inventoryService;
 
     /**
-     * Creates the controller with the inventory service dependency.
+     * Crée le contrôleur avec sa dépendance vers le service de stock.
      *
-     * @param inventoryService service responsible for inventory operations
+     * @param inventoryService service responsable des opérations de stock
      */
     public InventoryController(InventoryService inventoryService) {
         this.inventoryService = inventoryService;
     }
 
     /**
-     * Lists all inventory entries.
+     * Liste toutes les entrées de stock.
      *
-     * @return current stock entries
+     * @return entrées de stock actuelles
      */
     @GetMapping
     public List<InventoryResponse> findAll() {
@@ -40,10 +40,10 @@ public class InventoryController {
     }
 
     /**
-     * Creates or updates a stock entry for a game.
+     * Crée ou met à jour une entrée de stock pour un jeu.
      *
-     * @param request validated inventory payload
-     * @return updated inventory entry
+     * @param request données de stock validées
+     * @return entrée de stock mise à jour
      */
     @PutMapping
     public InventoryResponse upsert(@Valid @RequestBody InventoryRequest request) {

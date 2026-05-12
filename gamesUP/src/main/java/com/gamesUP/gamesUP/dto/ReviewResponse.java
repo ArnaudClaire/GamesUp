@@ -1,7 +1,7 @@
 package com.gamesUP.gamesUP.dto;
 
 /**
- * Response DTO returned for reviews.
+ * DTO de réponse renvoyé pour les avis.
  */
 public record ReviewResponse(
         Long id,

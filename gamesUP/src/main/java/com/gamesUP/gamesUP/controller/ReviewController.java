@@ -19,27 +19,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/reviews")
 /**
- * Exposes REST endpoints for customer reviews.
+ * Expose les endpoints REST liés aux avis clients.
  */
 public class ReviewController {
 
     private final ReviewService reviewService;
 
     /**
-     * Creates the controller with the review service dependency.
+     * Crée le contrôleur avec sa dépendance vers le service des avis.
      *
-     * @param reviewService service responsible for review operations
+     * @param reviewService service responsable des opérations liées aux avis
      */
     public ReviewController(ReviewService reviewService) {
         this.reviewService = reviewService;
     }
 
     /**
-     * Lists reviews, optionally filtered by game or user.
+     * Liste les avis, avec un filtre optionnel par jeu ou utilisateur.
      *
-     * @param gameId optional game identifier
-     * @param userId optional user identifier
-     * @return matching reviews
+     * @param gameId identifiant de jeu optionnel
+     * @param userId identifiant utilisateur optionnel
+     * @return avis correspondants
      */
     @GetMapping
     public List<ReviewResponse> findAll(
@@ -50,10 +50,10 @@ public class ReviewController {
     }
 
     /**
-     * Creates a review.
+     * Crée un avis.
      *
-     * @param request validated review payload
-     * @return created review response with its location
+     * @param request données d'avis validées
+     * @return réponse de l'avis créé avec son emplacement
      */
     @PostMapping
     public ResponseEntity<ReviewResponse> create(@Valid @RequestBody ReviewRequest request) {
@@ -62,10 +62,10 @@ public class ReviewController {
     }
 
     /**
-     * Deletes a review.
+     * Supprime un avis.
      *
-     * @param id review identifier
-     * @return empty response when the deletion succeeds
+     * @param id identifiant de l'avis
+     * @return réponse vide lorsque la suppression réussit
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {

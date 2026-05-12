@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 /**
- * Provides business operations for categories, authors and publishers.
+ * Fournit les opérations métier liées aux catégories, auteurs et éditeurs.
  */
 public class ReferenceService {
 
@@ -26,11 +26,11 @@ public class ReferenceService {
     private final PublisherRepository publisherRepository;
 
     /**
-     * Creates the service with its repository dependencies.
+     * Crée le service avec ses dépendances vers les dépôts.
      *
-     * @param categoryRepository repository for categories
-     * @param authorRepository repository for authors
-     * @param publisherRepository repository for publishers
+     * @param categoryRepository dépôt des catégories
+     * @param authorRepository dépôt des auteurs
+     * @param publisherRepository dépôt des éditeurs
      */
     public ReferenceService(
             CategoryRepository categoryRepository,
@@ -43,19 +43,19 @@ public class ReferenceService {
     }
 
     /**
-     * Lists all categories.
+     * Liste toutes les catégories.
      *
-     * @return categories
+     * @return catégories
      */
     public List<ReferenceResponse> findCategories() {
         return categoryRepository.findAll().stream().map(this::toResponse).toList();
     }
 
     /**
-     * Creates a category.
+     * Crée une catégorie.
      *
-     * @param request reference payload
-     * @return created category
+     * @param request données de référence
+     * @return catégorie créée
      */
     @Transactional
     public ReferenceResponse createCategory(ReferenceRequest request) {
@@ -65,11 +65,11 @@ public class ReferenceService {
     }
 
     /**
-     * Updates a category.
+     * Met à jour une catégorie.
      *
-     * @param id category identifier
-     * @param request reference payload
-     * @return updated category
+     * @param id identifiant de la catégorie
+     * @param request données de référence
+     * @return catégorie mise à jour
      */
     @Transactional
     public ReferenceResponse updateCategory(Long id, ReferenceRequest request) {
@@ -79,9 +79,9 @@ public class ReferenceService {
     }
 
     /**
-     * Deletes a category.
+     * Supprime une catégorie.
      *
-     * @param id category identifier
+     * @param id identifiant de la catégorie
      */
     @Transactional
     public void deleteCategory(Long id) {
@@ -89,19 +89,19 @@ public class ReferenceService {
     }
 
     /**
-     * Lists all authors.
+     * Liste tous les auteurs.
      *
-     * @return authors
+     * @return auteurs
      */
     public List<ReferenceResponse> findAuthors() {
         return authorRepository.findAll().stream().map(this::toResponse).toList();
     }
 
     /**
-     * Creates an author.
+     * Crée un auteur.
      *
-     * @param request reference payload
-     * @return created author
+     * @param request données de référence
+     * @return auteur créé
      */
     @Transactional
     public ReferenceResponse createAuthor(ReferenceRequest request) {
@@ -111,11 +111,11 @@ public class ReferenceService {
     }
 
     /**
-     * Updates an author.
+     * Met à jour un auteur.
      *
-     * @param id author identifier
-     * @param request reference payload
-     * @return updated author
+     * @param id identifiant de l'auteur
+     * @param request données de référence
+     * @return auteur mis à jour
      */
     @Transactional
     public ReferenceResponse updateAuthor(Long id, ReferenceRequest request) {
@@ -125,9 +125,9 @@ public class ReferenceService {
     }
 
     /**
-     * Deletes an author.
+     * Supprime un auteur.
      *
-     * @param id author identifier
+     * @param id identifiant de l'auteur
      */
     @Transactional
     public void deleteAuthor(Long id) {
@@ -135,19 +135,19 @@ public class ReferenceService {
     }
 
     /**
-     * Lists all publishers.
+     * Liste tous les éditeurs.
      *
-     * @return publishers
+     * @return éditeurs
      */
     public List<ReferenceResponse> findPublishers() {
         return publisherRepository.findAll().stream().map(this::toResponse).toList();
     }
 
     /**
-     * Creates a publisher.
+     * Crée un éditeur.
      *
-     * @param request reference payload
-     * @return created publisher
+     * @param request données de référence
+     * @return éditeur créé
      */
     @Transactional
     public ReferenceResponse createPublisher(ReferenceRequest request) {
@@ -157,11 +157,11 @@ public class ReferenceService {
     }
 
     /**
-     * Updates a publisher.
+     * Met à jour un éditeur.
      *
-     * @param id publisher identifier
-     * @param request reference payload
-     * @return updated publisher
+     * @param id identifiant de l'éditeur
+     * @param request données de référence
+     * @return éditeur mis à jour
      */
     @Transactional
     public ReferenceResponse updatePublisher(Long id, ReferenceRequest request) {
@@ -171,9 +171,9 @@ public class ReferenceService {
     }
 
     /**
-     * Deletes a publisher.
+     * Supprime un éditeur.
      *
-     * @param id publisher identifier
+     * @param id identifiant de l'éditeur
      */
     @Transactional
     public void deletePublisher(Long id) {

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Exposes REST endpoints for user wishlists.
+ * Expose les endpoints REST liés aux listes d'envies des utilisateurs.
  */
 @RestController
 @RequestMapping("/api/wishlists")
@@ -26,18 +26,18 @@ public class WishlistController {
     private final WishlistService wishlistService;
 
     /**
-     * Creates the controller with the wishlist service dependency.
+     * Crée le contrôleur avec sa dépendance vers le service des listes d'envies.
      *
-     * @param wishlistService service responsible for wishlist operations
+     * @param wishlistService service responsable des opérations liées aux listes d'envies
      */
     public WishlistController(WishlistService wishlistService) {
         this.wishlistService = wishlistService;
     }
 
     /**
-     * Lists every wishlist.
+     * Liste toutes les listes d'envies.
      *
-     * @return wishlists
+     * @return listes d'envies
      */
     @GetMapping
     public List<WishlistResponse> findAll() {
@@ -45,10 +45,10 @@ public class WishlistController {
     }
 
     /**
-     * Finds a wishlist by identifier.
+     * Recherche une liste d'envies par son identifiant.
      *
-     * @param id wishlist identifier
-     * @return requested wishlist
+     * @param id identifiant de la liste d'envies
+     * @return liste d'envies demandée
      */
     @GetMapping("/{id}")
     public WishlistResponse findById(@PathVariable Long id) {
@@ -56,10 +56,10 @@ public class WishlistController {
     }
 
     /**
-     * Finds the wishlist owned by one user.
+     * Recherche la liste d'envies possédée par un utilisateur.
      *
-     * @param userId user identifier
-     * @return requested wishlist
+     * @param userId identifiant utilisateur
+     * @return liste d'envies demandée
      */
     @GetMapping("/users/{userId}")
     public WishlistResponse findByUser(@PathVariable Long userId) {
@@ -67,10 +67,10 @@ public class WishlistController {
     }
 
     /**
-     * Creates a wishlist.
+     * Crée une liste d'envies.
      *
-     * @param request validated wishlist payload
-     * @return created wishlist response with its location
+     * @param request données de liste d'envies validées
+     * @return réponse de la liste d'envies créée avec son emplacement
      */
     @PostMapping
     public ResponseEntity<WishlistResponse> create(@Valid @RequestBody WishlistRequest request) {
@@ -79,11 +79,11 @@ public class WishlistController {
     }
 
     /**
-     * Updates a wishlist.
+     * Met à jour une liste d'envies.
      *
-     * @param id wishlist identifier
-     * @param request validated wishlist payload
-     * @return updated wishlist
+     * @param id identifiant de la liste d'envies
+     * @param request données de liste d'envies validées
+     * @return liste d'envies mise à jour
      */
     @PutMapping("/{id}")
     public WishlistResponse update(@PathVariable Long id, @Valid @RequestBody WishlistRequest request) {
@@ -91,10 +91,10 @@ public class WishlistController {
     }
 
     /**
-     * Deletes a wishlist.
+     * Supprime une liste d'envies.
      *
-     * @param id wishlist identifier
-     * @return empty response when the deletion succeeds
+     * @param id identifiant de la liste d'envies
+     * @return réponse vide lorsque la suppression réussit
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {

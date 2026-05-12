@@ -20,7 +20,7 @@ import org.springframework.util.StringUtils;
 @Service
 @Transactional(readOnly = true)
 /**
- * Provides business operations for the game catalogue.
+ * Fournit les opérations métier du catalogue de jeux.
  */
 public class GameService {
 
@@ -31,13 +31,13 @@ public class GameService {
     private final GameMapper gameMapper;
 
     /**
-     * Creates the service with its persistence and mapping dependencies.
+     * Crée le service avec ses dépendances de persistance et de mapping.
      *
-     * @param gameRepository repository for games
-     * @param categoryRepository repository for categories
-     * @param publisherRepository repository for publishers
-     * @param authorRepository repository for authors
-     * @param gameMapper mapper used to convert games to API DTOs
+     * @param gameRepository dépôt des jeux
+     * @param categoryRepository dépôt des catégories
+     * @param publisherRepository dépôt des éditeurs
+     * @param authorRepository dépôt des auteurs
+     * @param gameMapper mapper utilisé pour convertir les jeux en DTO d'API
      */
     public GameService(
             GameRepository gameRepository,
@@ -54,10 +54,10 @@ public class GameService {
     }
 
     /**
-     * Lists every game or applies a free-text search.
+     * Liste tous les jeux ou applique une recherche en texte libre.
      *
-     * @param search optional search term
-     * @return matching games
+     * @param search terme de recherche optionnel
+     * @return jeux correspondants
      */
     public List<GameResponse> findAll(String search) {
         List<Game> games = StringUtils.hasText(search)
@@ -70,20 +70,20 @@ public class GameService {
     }
 
     /**
-     * Finds one game by identifier.
+     * Recherche un jeu par son identifiant.
      *
-     * @param id game identifier
-     * @return requested game
+     * @param id identifiant du jeu
+     * @return jeu demandé
      */
     public GameResponse findById(Long id) {
         return gameMapper.toResponse(findGame(id));
     }
 
     /**
-     * Creates a game from the public request DTO.
+     * Crée un jeu à partir du DTO de requête publique.
      *
-     * @param request game payload
-     * @return created game
+     * @param request données du jeu
+     * @return jeu créé
      */
     @Transactional
     public GameResponse create(GameRequest request) {
@@ -93,11 +93,11 @@ public class GameService {
     }
 
     /**
-     * Updates an existing game from the public request DTO.
+     * Met à jour un jeu existant à partir du DTO de requête publique.
      *
-     * @param id game identifier
-     * @param request game payload
-     * @return updated game
+     * @param id identifiant du jeu
+     * @param request données du jeu
+     * @return jeu mis à jour
      */
     @Transactional
     public GameResponse update(Long id, GameRequest request) {
@@ -107,9 +107,9 @@ public class GameService {
     }
 
     /**
-     * Deletes an existing game.
+     * Supprime un jeu existant.
      *
-     * @param id game identifier
+     * @param id identifiant du jeu
      */
     @Transactional
     public void delete(Long id) {

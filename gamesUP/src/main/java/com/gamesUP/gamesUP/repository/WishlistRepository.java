@@ -5,15 +5,15 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Spring Data repository for wishlists.
+ * Dépôt Spring Data pour les listes d'envies.
  */
 public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
 
     /**
-     * Finds the wishlist owned by one user.
+     * Recherche la liste d'envies possédée par un utilisateur.
      *
-     * @param userId user identifier
-     * @return matching wishlist when present
+     * @param userId identifiant utilisateur
+     * @return liste d'envies correspondante, si elle existe
      */
     Optional<Wishlist> findByUserId(Long userId);
 }

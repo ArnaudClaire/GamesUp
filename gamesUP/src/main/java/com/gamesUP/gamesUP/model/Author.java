@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * JPA entity representing a game author.
+ * Entité JPA représentant un auteur de jeu.
  */
 @Entity
 @Table(name = "authors")
@@ -26,7 +26,7 @@ public class Author {
     private Set<Game> games = new HashSet<>();
 
     /**
-     * Creates an empty author for JPA.
+     * Crée un auteur vide pour JPA.
      */
     public Author() {
     }

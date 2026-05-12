@@ -1,7 +1,7 @@
 package com.gamesUP.gamesUP.dto;
 
 /**
- * DTO carrying one recommendation signal sent to the Python API.
+ * DTO portant un signal de recommandation envoyé à l'API Python.
  */
 public record RecommendationPurchaseRequest(
         Long gameId,

@@ -20,26 +20,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/games")
 /**
- * Exposes REST endpoints used to read, search and administer board games.
+ * Expose les endpoints REST utilisés pour consulter, rechercher et administrer les jeux de société.
  */
 public class GameController {
 
     private final GameService gameService;
 
     /**
-     * Creates the controller with the game service dependency.
+     * Crée le contrôleur avec sa dépendance vers le service des jeux.
      *
-     * @param gameService service responsible for game catalogue operations
+     * @param gameService service responsable des opérations du catalogue de jeux
      */
     public GameController(GameService gameService) {
         this.gameService = gameService;
     }
 
     /**
-     * Lists all games or filters them with a free-text search.
+     * Liste tous les jeux ou les filtre avec une recherche en texte libre.
      *
-     * @param search optional search term
-     * @return matching games
+     * @param search terme de recherche optionnel
+     * @return jeux correspondants
      */
     @GetMapping
     public List<GameResponse> findAll(@RequestParam(required = false) String search) {
@@ -47,10 +47,10 @@ public class GameController {
     }
 
     /**
-     * Finds one game by its identifier.
+     * Recherche un jeu par son identifiant.
      *
-     * @param id game identifier
-     * @return the requested game
+     * @param id identifiant du jeu
+     * @return the jeu demandé
      */
     @GetMapping("/{id}")
     public GameResponse findById(@PathVariable Long id) {
@@ -58,10 +58,10 @@ public class GameController {
     }
 
     /**
-     * Creates a new game in the catalogue.
+     * Crée un nouveau jeu dans le catalogue.
      *
-     * @param request validated game payload
-     * @return created game response with its location
+     * @param request données de jeu validées
+     * @return réponse du jeu créé avec son emplacement
      */
     @PostMapping
     public ResponseEntity<GameResponse> create(@Valid @RequestBody GameRequest request) {
@@ -72,11 +72,11 @@ public class GameController {
     }
 
     /**
-     * Updates an existing game.
+     * Met à jour un jeu existant.
      *
-     * @param id game identifier
-     * @param request validated game payload
-     * @return updated game response
+     * @param id identifiant du jeu
+     * @param request données de jeu validées
+     * @return réponse du jeu mis à jour
      */
     @PutMapping("/{id}")
     public GameResponse update(@PathVariable Long id, @Valid @RequestBody GameRequest request) {
@@ -84,10 +84,10 @@ public class GameController {
     }
 
     /**
-     * Deletes a game from the catalogue.
+     * Supprime un jeu du catalogue.
      *
-     * @param id game identifier
-     * @return empty response when the deletion succeeds
+     * @param id identifiant du jeu
+     * @return réponse vide lorsque la suppression réussit
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
