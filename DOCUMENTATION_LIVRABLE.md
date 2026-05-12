@@ -472,10 +472,10 @@ cd gamesUP
 Résultat :
 
 - Build Spring : succès.
-- Tests Spring : 15 tests, 0 échec.
-- Couverture JaCoCo instructions : 75 pourcent.
+- Tests Spring : 20 tests, 0 échec.
+- Couverture JaCoCo instructions : 76 pourcent.
 - Couverture JaCoCo branches : 57 pourcent.
-- Couverture JaCoCo classes : 98 pourcent.
+- Couverture JaCoCo classes : 100 pourcent.
 
 Rapports :
 
@@ -486,23 +486,23 @@ Rapports :
 
 | Métrique JaCoCo | Couverture | Détail |
 | --- | ---: | --- |
-| Instructions | 75 % | 754 instructions non couvertes sur 3 132 |
+| Instructions | 76 % | 750 instructions non couvertes sur 3 132 |
 | Branches | 57 % | 24 branches non couvertes sur 56 |
-| Complexité | 71 % | 99 points de complexité non couverts sur 342 |
-| Lignes | 81 % | 131 lignes non couvertes sur 708 |
-| Méthodes | 74 % | 79 méthodes non couvertes sur 314 |
-| Classes | 98 % | 1 classe non couverte sur 56 |
+| Complexité | 71 % | 98 points de complexité non couverts sur 342 |
+| Lignes | 82 % | 129 lignes non couvertes sur 708 |
+| Méthodes | 75 % | 78 méthodes non couvertes sur 314 |
+| Classes | 100 % | 0 classe non couverte sur 56 |
 
 ```mermaid
 xychart-beta
     title "Couverture JaCoCo"
     x-axis ["Instructions", "Branches", "Complexité", "Lignes", "Méthodes", "Classes"]
     y-axis "Pourcentage" 0 --> 100
-    bar [75, 57, 71, 81, 74, 98]
+    bar [76, 57, 71, 82, 75, 100]
 ```
 
 Lecture du rapport :
 
-- les tests ont été découpés par domaine pour améliorer la lisibilité : santé/sécurité, catalogue, commerce, recommandations et erreurs ;
+- les tests ont été découpés par domaine pour améliorer la lisibilité : santé/sécurité, catalogue, commerce, recommandations, DTO, modèles et erreurs ;
 - les tests de branches très secondaires ont été retirés pour conserver une suite plus utile fonctionnellement ;
 - la couverture d’instructions reste supérieure au seuil demandé de 70 %.
